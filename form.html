@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!--Import materialize.css-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+
+    <title>Start My Day</title>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <form class="col s12">
+          <div class="row">
+            <div class="input-field col s6">
+                <input id="first_name" type="text" class="validate">
+                <label for="first_name">First Name</label>
+              </div>
+            <div class="input-field col s6">
+              <input id="last_name" type="text" class="validate">
+              <label for="last_name">Last Name</label>
+            </div>
+          </div>
+        <div class="row">
+        
+                <div class="input-field col s6">
+                    <input placeholder="Place" id="first_name" type="text" class="validate">
+                    <label for="first_name">Where are you going today?</label>
+                </div>
+                <div class="input-field col s6">
+                    <input id="address" type="text" class="validate">
+                    <label for="address">Address</label>
+                </div>
+                <div>
+
+                <input id="arrivalTime" type="text" class="timepicker">
+                <label for="arrivalTime">Arrival Time</label>
+                <script>
+                    $(document).ready(function(){
+                        $('.timepicker').timepicker();
+                      });
+                </script>
+                </div>
+
+
+
+
+          
+          <button class="btn waves-effect waves-light" type="submit" name="action">Submit<i class="material-icons right">send</i></button>
+        
+        </form>
+      </div>
+</div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+   
+</body>
+</html>
