@@ -4,13 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     
     <!--Import materialize.css-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
     <title>Start My Day</title>
@@ -19,23 +22,93 @@
 </head>
 <body>
 
-<div class="container">
-  
-  <div class="row">
-    <form class="col s12">
-        <div class="input-field">
-            <input id="username" type="text" class="validate">
-            <label for="username"> Username: </label>
-         </div>
-      <button class="btn waves-effect waves-light" type="submit" name="action">Submit<i class="material-icons right">done</i></button>
-      <button class="btn waves-effect waves-light" name="action">New User<i class="material-icons right">add</i></button>
-    
-    </form>
-  </div>
-</div>
+
+    <div class="container">
+
+        <div class="row">
+
+            <div id="departure" class="departure">
+                <div class="col s12 m6">
+                    <h3 class="header">Departure</h3>
+                  <div class="card-panel blue">
+                    <span class="white-text">Departure time.</span>
+                  </div>
+                </div>
+            </div>
+
+            <div id="arrival" class="arrival">
+                <div class="col s12 m6">
+                    <h3 class="header">Arrival</h3>
+                  <div class="card-panel blue">
+                    <span class="white-text">Destination and arrival time.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+        </div>
+
+
+        <div class="row">
+
+            <div id="map" class="map">
+                <!-- <iframe
+                  width="600"
+                  height="450"
+                  frameborder="0" style="border:0"
+                  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDcyfK1TBzMPg3vSfH13tfFEdmX1imKe4Q
+                    &q=Space+Needle,Seattle+WA" allowfullscreen>
+                </iframe> -->
+                <div class="col s12 m6">
+                    <h3 class="header">Travel Conditions</h3>
+                <div class="card-image">
+                    <img src="https://www.transparenttextures.com/patterns/asfalt-light.png" alt="">
+                </div>
+                  <div class="card-panel blue">
+                    <span class="white-text">Map with driving conditions.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+        </div>
+
+
+        <div class="row">
+
+            <div id="weather" class="weather">
+                <div class="col s12 m6">
+                    <h3 class="header">Today's Weather</h3>
+                  <div class="card-panel blue">
+                    <span class="white-text">Today's weather summary.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+        </div>
+
+
+        <div class="row">
+
+            <div id="forecast" class="forecast">
+                <div class="col s12 m6">
+                    <h3 class="header">Forecast</h3>
+                  <div class="card-panel blue">
+                    <span class="white-text">This week's weather summary.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+        </div>
+
+    </div>  <!-- container end -->
+
 
     
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <script type="text/javascript" src="assets/appscript.js"></script>
+
    
 </body>
 </html>
