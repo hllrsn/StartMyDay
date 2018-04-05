@@ -76,6 +76,4 @@ $(document).ready(function () {
   Console.log("saving stuff to local storage")
 
 
-
-
 });
