@@ -11,22 +11,28 @@
     
       let db = firebase.database();
 
-      console.log("here");
-
       $("#submit").on("click", function (event) {
-        console.log("clicked");
         event.preventDefault();
-        console.log("sumbit was clicked");
         username = $("#username").val().trim();
         console.log(username);
 
-        
-        ref.child("users").equalTo(username).once("value",snapshot => {
-            var userData = snapshot.val();
-            if (userData){
-              console.log("exists!");
-            }
-        });
+
+        db.ref("users")
+            .orderByChild("userName")
+            .equalTo(username)
+            .on("child_added", function(data)
+            {
+                var user = data.val();
+                console.log(user);
+                console.log(user.userName);
+	            window.location.href = "main.html";
+            });
+        // db.ref(child("users").equalTo(username).once("value",snapshot => {
+        //     var userData = snapshot.val();
+        //     if (userData){
+        //       console.log("exists!");
+        //     }
+        // });
 
       });
 
