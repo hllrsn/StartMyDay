@@ -9,6 +9,8 @@ $(document).ready(function(){
     let arrivalTime = events[2];
     let homeBase = "1845 Aglen St Roseville";
     let queryURL = "https://maps.googleapis.com/maps/api/directions/json?";
+    let mapsKey = "AIzaSyDhNrKK89X09tx7PxILd7CKgxLzbrQZRjs"
+    let mapsEmbedKey = "AIzaSyDazwo9z8z-aet4u3aEd0NRie8WcYBPFSw"
     // var directionsService = new google.maps.DirectionsService();
 
     let homeBasePlus = homeBase.split(" ").join("+")
@@ -25,101 +27,103 @@ $(document).ready(function(){
 
     
 
-
+    let mapInjector = '<iframe    width="855"    height="450"    frameborder="0" style="border:0"    src="https://www.google.com/maps/embed/v1/directions?key='+mapsEmbedKey+'&origin='+homeBasePlus+'&destination='+destinationPlus+'" allowfullscreen>  </iframe>'
+    console.log(mapInjector)
+    $("#map").html(mapInjector);
     
-    if (n<a){
-       doTodayMathThenCall();
+    // if (n<a){
+    //    doTodayMathThenCall();
 
        
-    } else {
-        if (n===a) {
+    // } else {
+    //     if (n===a) {
             
-            let nm = parseInt(nowTimeArray[1])
-            let am = parseInt(arrivalArray[1])
-            if (nm<am) {
-                doTodayMathThenCall();
-            } else {
-                doTomorrowMathThenCall();
-            }
-        }   
-        doTomorrowMathThenCall();
-    }
+    //         let nm = parseInt(nowTimeArray[1])
+    //         let am = parseInt(arrivalArray[1])
+    //         if (nm<am) {
+    //             doTodayMathThenCall();
+    //         } else {
+    //             doTomorrowMathThenCall();
+    //         }
+    //     }   
+    //     doTomorrowMathThenCall();
+    // }
 
-    function doTodayMathThenCall(){
+    // function doTodayMathThenCall(){
         
-        let nh = parseInt(nowTimeArray[0]);
-        let nm = parseInt(nowTimeArray[1]);
-        let ah = parseInt(arrivalArray[0]);
-        let am = parseInt(arrivalArray[1]);
-        console.log(nh,nm,ah,am)
-        let arrivalUnix = nowUnix;
+    //     let nh = parseInt(nowTimeArray[0]);
+    //     let nm = parseInt(nowTimeArray[1]);
+    //     let ah = parseInt(arrivalArray[0]);
+    //     let am = parseInt(arrivalArray[1]);
+    //     console.log(nh,nm,ah,am)
+    //     let arrivalUnix = nowUnix;
 
-        let hDiff = ah-nh;
-        arrivalUnix = arrivalUnix + (60*hDiff);
+    //     let hDiff = ah-nh;
+    //     arrivalUnix = arrivalUnix + (60*hDiff);
 
-        while (nm < 59) {
-            arrivalUnix = arrivalUnix + 60;
-            nm++;
+    //     while (nm < 59) {
+    //         arrivalUnix = arrivalUnix + 60;
+    //         nm++;
 
-        }
-        let x = 0;
-        while (x<=am) {
-            arrivalUnix = arrivalUnix + 60;
-            x++;
+    //     }
+    //     let x = 0;
+    //     while (x<=am) {
+    //         arrivalUnix = arrivalUnix + 60;
+    //         x++;
 
-        }
-        doCallNow(arrivalUnix);
+    //     }
+    //     doCallNow(arrivalUnix);
         
-    }
+    // }
 
-    function doTomorrowMathThenCall(){
+    // function doTomorrowMathThenCall(){
         
-        let nh = parseInt(nowTimeArray[0]);
-        let nm = parseInt(nowTimeArray[1]);
-        let ah = parseInt(arrivalArray[0]);
-        let am = parseInt(arrivalArray[1]);
+    //     let nh = parseInt(nowTimeArray[0]);
+    //     let nm = parseInt(nowTimeArray[1]);
+    //     let ah = parseInt(arrivalArray[0]);
+    //     let am = parseInt(arrivalArray[1]);
         
-        let arrivalUnix = nowUnix;
+    //     let arrivalUnix = nowUnix;
 
-        while (nh < 23) {
-            arrivalUnix = arrivalUnix + 3600;
-            nh++;
+    //     while (nh < 23) {
+    //         arrivalUnix = arrivalUnix + 3600;
+    //         nh++;
 
             
-        }
+    //     }
 
-        while (nm < 59) {
-            arrivalUnix = arrivalUnix + 60;
-            nm++;
+    //     while (nm < 59) {
+    //         arrivalUnix = arrivalUnix + 60;
+    //         nm++;
 
-        }
-        let i = 0;
-        while (i<ah) {
-            arrivalUnix = arrivalUnix + 3600;
-            i++;            
+    //     }
+    //     let i = 0;
+    //     while (i<ah) {
+    //         arrivalUnix = arrivalUnix + 3600;
+    //         i++;            
             
-        }
-        let x = 0;
-        while (x<=am) {
-            arrivalUnix = arrivalUnix + 60;
-            x++;
+    //     }
+    //     let x = 0;
+    //     while (x<=am) {
+    //         arrivalUnix = arrivalUnix + 60;
+    //         x++;
 
-        }
+    //     }
 
-        doCallNow(arrivalUnix);
-    }
+    //     doCallNow(arrivalUnix);
+    // }
 
-    function doCallNow(arrive) {
-        let originString = "origin="+homeBasePlus;
-        let destinationString = "destination="+destinationPlus;
-        let arrivalString = "arrival_time="+arrive;
-        let apiKey = "key=AIzaSyCzwsje2Kj1pj97lj81UmrEOmPci7988XU";
+    // function doCallNow(arrive) {
+    //     let originString = "origin="+homeBasePlus;
+    //     let destinationString = "destination="+destinationPlus;
+    //     let arrivalString = "arrival_time="+arrive;
+    //     let apiKey = "key=AIzaSyCzwsje2Kj1pj97lj81UmrEOmPci7988XU";
 
-        queryURL = queryURL.concat(originString);
-        queryURL = queryURL.concat("&"+destinationString);
-        queryURL = queryURL.concat("&"+arrivalString);
-        queryURL = queryURL.concat("&"+apiKey);
-        console.log(queryURL)
+    //     queryURL = queryURL.concat(originString);
+    //     queryURL = queryURL.concat("&"+destinationString);
+    //     queryURL = queryURL.concat("&"+arrivalString);
+    //     queryURL = queryURL.concat("&"+apiKey);
+    //     console.log(queryURL)
 
 
 
@@ -169,22 +173,22 @@ $(document).ready(function(){
         
 
 
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        }).then(function(response) {
-            console.log(this)
-        })
-    }
-
-    
-
-    //  $.ajax({
-    //         url: "http://api.wunderground.com/api/31f7570bfbcd751b/hourly10day/q/MN/minneapolis.json",
+    //     $.ajax({
+    //         url: queryURL,
     //         method: "GET"
     //     }).then(function(response) {
     //         console.log(this)
     //     })
+    // }
+
+    
+
+     $.ajax({
+            url: "http://api.wunderground.com/api/31f7570bfbcd751b/hourly10day/q/MN/minneapolis.json",
+            method: "GET"
+        }).then(function(response) {
+            console.log(this)
+        })
 
 
     // <div style="width: 100%"><iframe width="100%" height="500" src="https://maps.google.com/maps?width=100%&amp;height=500&amp;hl=en&amp;q=1845%20Aglen%20St&amp;ie=UTF8&amp;t=p&amp;z=13&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"><a href="https://www.maps.ie/create-google-map/">Embed Google Map</a></iframe></div><br />
