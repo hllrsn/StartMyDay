@@ -1,10 +1,44 @@
-body {
-    background: url("images/city-40.png") ghostwhite;
-    background-size: 100%;
-    margin: 20px;
-  }
 
- input[type=text] {
-     color: white;
- }
+    @import url('https://fonts.googleapis.com/css?family=Chicle');
+    @import url('https://fonts.googleapis.com/css?family=Poppins');
+    @import url('https://fonts.googleapis.com/css?family=Yatra+One');
+    @import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+    @import url('https://fonts.googleapis.com/css?family=Work+Sans');
+    @import url('https://fonts.googleapis.com/css?family=Montserrat');
+    @import url('https://fonts.googleapis.com/css?family=Amaranth');
+    @import url('https://fonts.googleapis.com/css?family=Unica+One');
+    @import url('https://fonts.googleapis.com/css?family=Merienda');
+    @import url('https://fonts.googleapis.com/css?family=Alegreya+Sans+SC');
+    @import url('https://fonts.googleapis.com/css?family=Julius+Sans+One');
+    @import url('https://fonts.googleapis.com/css?family=Playfair+Display+SC');
+
+
+    body {
+      background: url("images/city-40.png") ghostwhite;
+      background-size: 100%;
+      margin: 20px;
+    }
+
+
+    h2 {
+      /*font-family: 'Chicle', cursive;
+      font-family: 'Poppins', sans-serif;
+      font-family: 'Yatra One', cursive;
+      font-family: 'Josefin Sans', sans-serif;
+      font-family: 'Work Sans', sans-serif;
+      font-family: 'Montserrat', sans-serif;
+      font-family: 'Amaranth', sans-serif;
+      font-family: 'Unica One', cursive;
+      font-family: 'Merienda', cursive;
+      font-family: 'Alegreya Sans SC', sans-serif;
+      font-family: 'Julius Sans One', sans-serif;*/
+      font-family: 'Playfair Display SC', serif;
+      font-weight: bold;
+      /*text-shadow: 1px 1px 1px*/
+    }
+
+
+    input[type=text] {
+         color: white;
+    }
 
