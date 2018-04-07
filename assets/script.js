@@ -14,27 +14,24 @@
       $("#submit").on("click", function (event) {
         event.preventDefault();
         username = $("#username").val().trim();
-        console.log(username);
-
+        // console.log(username);
 
         db.ref("users")
             .orderByChild("userName")
             .equalTo(username)
-            .on("child_added", function(data)
-            {
+            .once("value", function(data)
+            { 
                 var user = data.val();
                 console.log(user);
-                console.log(user.userName);
-	            window.location.href = "main.html";
+                if (user) {
+                console.log("user");
+                window.location.href = "main.html";
+                } else {
+                    console.log("not a user");
+                    M.toast({html: 'Invalid User, try again'});
+                }
             
             });
-        // db.ref(child("users").equalTo(username).once("value",snapshot => {
-        //     var userData = snapshot.val();
-        //     if (userData){
-        //       console.log("exists!");
-        //     }
-        // });
-
+            
       });
 
-    
