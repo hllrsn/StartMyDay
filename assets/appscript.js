@@ -120,17 +120,17 @@ $(document).ready(function () {
 
   });
 
-  // Push to Firebase
-  db.ref('users/' + name + username + address0 + event0 + address0).set({
-    userName: userName,
-    name: name,
-    address0: address0,
-    event0: event0,
-    address0: address0,
-    arrivalTime:arrivalID,
-    dateAdded: firebase.database.ServerValue.TIMESTAMP
+  // // Push to Firebase
+  // db.ref('users/' + name + username + address0 + event0 + address0).set({
+  //   userName: userName,
+  //   name: name,
+  //   address0: address0,
+  //   event0: event0,
+  //   address0: address0,
+  //   arrivalTime:arrivalID,
+  //   dateAdded: firebase.database.ServerValue.TIMESTAMP
 
-  });
+  // });
 
 
 
