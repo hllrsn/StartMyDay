@@ -28,13 +28,22 @@ $(document).ready(function(){
     let destinationPlus = destinationAddress.split(" ").join("+");
 
     database.ref().on("value",function(snapshot){
-        snap = snapshot.val();
-        $("#trainsTable").html("<tr><th>Train Name</th><th>Destination</th>        <th>Frequency (Minutes)</th>        <th>Next Arrival</th>        <th>Minutes Away</th>    </tr>");
-        snapshot.forEach(function(childSnap){
-            console.log(childSnap.val());
-
+        console.log(snapshot.val().users)
+        // let appUsers = snapshot.val().users;
+        let userIsFound = "false"
+        let userToCheck = "peter"
+        userIsFound = snapshot.val().users;
+        console.log(userIsFound[userToCheck].userName)
+        // if (userIsFound === "mustafa") {
+        //     console.log("yay!")
         })
-    })
+
+       
+        // snapshot.forEach(function(childSnap){
+            // console.log(childSnap.val().users.val());
+
+        // })
+    
 
     let injectMap = '<iframe  width="100%"  height="100%"  frameborder="0" style="border:0"  src="https://www.google.com/maps/embed/v1/directions?key='+embedKey+'&origin='+homeBasePlus+'&destination='+destinationPlus+'" allowfullscreen></iframe>'
     $("#map").html(injectMap)
@@ -208,7 +217,12 @@ $(document).ready(function(){
             url: "http://api.wunderground.com/api/31f7570bfbcd751b/hourly10day/q/MN/minneapolis.json",
             method: "GET"
         }).then(function(response) {
-            console.log(response.hourly_forecast[0].feelslike.english)
+            console.log(response)
+            
+            let weatherNow = response.hourly_forecast[0].feelslike.english
+            let weatherNowTime = response.hourly_forecast[0].FCTTIME.hour
+            weatherNowTime = Math.abs((weatherNowTime-12)*-1)
+            console.log(weatherNowTime)
             $("#weatherZone").html('<h4>Right now it feels like '+response.hourly_forecast[0].feelslike.english+'° F outside')
         })
     
