@@ -43,11 +43,11 @@ $(document).ready(function () {
     e.preventDefault();
 
     // Grabs user input
-    let username = ("#userName").val().trim();
+    let username = $("#userName").val().trim();
     let name = $("#name").val().trim();
     let randomFun = $("#giphy").val().trim();
-    let event = $("#event0" + i).val().trim();
-    let address = $("#address0" + i).val().trim();
+    let event = $("#event0").val().trim();
+    let address = $("#address0").val().trim();
     let arrivalTime = $("#arrivalTime").val().trim();
     console.log(username);
 
@@ -61,21 +61,14 @@ $(document).ready(function () {
       dateAdded: firebase.database.ServerValue.TIMESTAMP
     };
 
+    console.log(newUser)
+
     // // Uploads user data to the database
     // database.ref().push(newUser);
 
 
     // Push to Firebase
-    db.ref('users/' + name + username + address0 + event0 + address0).set({
-      userName: userName,
-      name: name,
-      address0: address0,
-      event0: event0,
-      address0: address0,
-      arrivalTime: arrivalTime,
-      dateAdded: firebase.database.ServerValue.TIMESTAMP
-
-    });
+    db.ref('users').push(newUser);
 
     // Logs everything to console
     console.log(newUser.userName);
@@ -125,6 +118,6 @@ $(document).ready(function () {
     // Convert the array into string and then store in the localStorage
     localStorage.setItem('userName', userName.toString());
   }
-  Console.log("saving stuff to local storage")
+  console.log("saving stuff to local storage")
 
 })
