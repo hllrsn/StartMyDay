@@ -13,8 +13,8 @@ $(document).ready(function () {
   let db = firebase.database();
   let PlusButton = 0;
 
-  $("#addButton0").on("click", function (event) {
-    event.preventDefault();
+  $("#addButton0").on("click", function (e) {
+    e.preventDefault();
     addFromRow(i);
   });
 
@@ -37,11 +37,10 @@ $(document).ready(function () {
     })
 
   }
-  
-  // Click Listener for adding users
-  $("#submit").on("click", function (event) {
-    event.preventDefault();
 
+  // Click Listener for adding users
+  $("#submit").on("click", function (e) {
+    e.preventDefault();
 
     // Grabs user input
     let username = ("#username").val().trim();
@@ -50,7 +49,7 @@ $(document).ready(function () {
     let event = $("#event0" + i).val().trim();
     let address = $("#address0" + i).val().trim();
     let arrivalTime = $("#arrivalTime").val().trim();
-
+    console.log(username);
     // let returningUser = 0;
     // let userName = ["mustafa15ali"];
     // let name = ["Moose"]
@@ -64,12 +63,26 @@ $(document).ready(function () {
       name: name,
       event0: event0,
       address0: address0,
-      arrivalTime:arrivalTime,
+      arrivalTime: arrivalTime,
       dateAdded: firebase.database.ServerValue.TIMESTAMP
     };
 
-    // Uploads employee data to the database
-    database.ref().push(newUser);
+    // // Uploads user data to the database
+    // database.ref().push(newUser);
+
+
+    // Push to Firebase
+    db.ref('users/' + name + username + address0 + event0 + address0).set({
+      userName: userName,
+      name: name,
+      address0: address0,
+      event0: event0,
+      address0: address0,
+      arrivalTime: arrivalTime,
+      dateAdded: firebase.database.ServerValue.TIMESTAMP
+
+    });
+
 
     // Logs everything to console
     console.log(newUser.userName);
@@ -81,8 +94,8 @@ $(document).ready(function () {
 
     // Alert
     alert("User successfully added");
-  });
 
+  })
   // Create Firebase event for adding users to the database 
   db.ref().on("child_added", function (childSnapshot, prevChildKey) {
 
@@ -103,17 +116,6 @@ $(document).ready(function () {
     console.log(dateAdded);
   });
 
-  // // Push to Firebase
-  // db.ref('users/' + name + username + address0 + event0 + address0).set({
-  //   userName: userName,
-  //   name: name,
-  //   address0: address0,
-  //   event0: event0,
-  //   address0: address0,
-  //   arrivalTime:arrivalID,
-  //   dateAdded: firebase.database.ServerValue.TIMESTAMP
-
-  // });
 
   function save(user) {
     var isAlreadyInserted = false;
@@ -133,13 +135,4 @@ $(document).ready(function () {
   }
   Console.log("saving stuff to local storage")
 
-
-});
-
-// Grabbed values from text boxes
-username = ("#username").val().trim();
-name = $("#name").val().trim();
-randomFun = $("#giphy").val().trim();
-// Multiple addresses?  Not sure on the following: (Maybe these variables need to be in an array?)
-address = $("#address"+ i).val().trim();
-arrivalTime = $("#arrivalTime").val().trim();
+})
