@@ -29,11 +29,11 @@ $(document).ready(function () {
     let newRow = '<div class="input-field col s4"id= ""' + rowID + '> <input placeholder="Event" id=""' + eventID + ' type="text" class="validate"> <label for="event">Where are you going today?</label> </div> <div class="input-field col s4"> <input id=""' + addressID + ' type="text" class="validate"> <label for="address">Address</label> </div> <div class="col s2"> <input id=""' + arrivalID + ' class="timepicker"><i class="material-icons">access_time</i> <label for="arrivalTime">Arrival Time</label> </div> <a class="btn-floating btn-medium waves-effect waves-light blue" id="addButton0"><i class="material-icons">add</i></a> <a class="btn-floating btn-medium waves-effect waves-light blue" id="removeButton0"><i class="material-icons">remove</i></a>'
 
     $("#events").append(newRow);
-    
+
     //click listener for the new button
     let addButtonID = "#" + addButtonID;
     $(addButtonID).on("click", function () {
-      addFormRow(foobar);
+      addFormRow(i);
     })
 
   }
@@ -74,8 +74,6 @@ $(document).ready(function () {
     localStorage.setItem('userName', userName.toString());
   }
   Console.log("saving stuff to local storage")
-
-
 
 
 });
