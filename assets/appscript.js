@@ -37,19 +37,8 @@ $(document).ready(function () {
     })
 
   }
-
-
-
-
-
-
-
-
-
-
-
-
-  // Button for adding users
+  
+  // Click Listener for adding users
   $("#submit").on("click", function (event) {
     event.preventDefault();
 
@@ -112,12 +101,6 @@ $(document).ready(function () {
     console.log(event);
     console.log(address);
     console.log(dateAdded);
-
-
-
-
-
-
   });
 
   // // Push to Firebase
@@ -131,42 +114,6 @@ $(document).ready(function () {
   //   dateAdded: firebase.database.ServerValue.TIMESTAMP
 
   // });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   function save(user) {
     var isAlreadyInserted = false;
