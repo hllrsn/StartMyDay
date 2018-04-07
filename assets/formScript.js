@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(function () {
 
     var config = {
         apiKey: "AIzaSyDKxbhfLyIhZDvq7CpT7Ate8pLAyrSjFM8",
@@ -9,13 +9,13 @@ $(document).ready(function(){
         messagingSenderId: "1033136648561"
     };
     firebase.initializeApp(config);
-    
+
     let database = firebase.database();
 
 
     let hasConfiguration = 1;
     let userName = "Peter Anderson";
-    let events = ["work","550 S 4th St Minneapolis","07:55"];
+    let events = ["work", "550 S 4th St Minneapolis", "07:55"];
     let destinationTitle = events[0];
     let destinationAddress = events[1];
     let arrivalTime = events[2];
@@ -27,7 +27,7 @@ $(document).ready(function(){
     let homeBasePlus = homeBase.split(" ").join("+")
     let destinationPlus = destinationAddress.split(" ").join("+");
 
-    database.ref().on("value",function(snapshot){
+    database.ref().on("value", function (snapshot) {
         console.log(snapshot.val().users)
         // let appUsers = snapshot.val().users;
         let userIsFound = "false"
@@ -36,16 +36,16 @@ $(document).ready(function(){
         console.log(userIsFound[userToCheck].userName)
         // if (userIsFound === "mustafa") {
         //     console.log("yay!")
-        })
+    })
 
-       
-        // snapshot.forEach(function(childSnap){
-            // console.log(childSnap.val().users.val());
 
-        // })
-    
+    // snapshot.forEach(function(childSnap){
+    // console.log(childSnap.val().users.val());
 
-    let injectMap = '<iframe  width="100%"  height="100%"  frameborder="0" style="border:0"  src="https://www.google.com/maps/embed/v1/directions?key='+embedKey+'&origin='+homeBasePlus+'&destination='+destinationPlus+'" allowfullscreen></iframe>'
+    // })
+
+
+    let injectMap = '<iframe  width="100%"  height="100%"  frameborder="0" style="border:0"  src="https://www.google.com/maps/embed/v1/directions?key=' + embedKey + '&origin=' + homeBasePlus + '&destination=' + destinationPlus + '" allowfullscreen></iframe>'
     $("#map").html(injectMap)
     // let arrivalArray = arrivalTime.split(":");
     // let nowTime = moment().format("HH:mm");
@@ -56,17 +56,17 @@ $(document).ready(function(){
     // let n = parseInt(nowTimeArray[0]);
     // let a = parseInt(arrivalArray[0]);
 
-    
 
 
-    
+
+
     // if (n<a){
     //    doTodayMathThenCall();
 
-       
+
     // } else {
     //     if (n===a) {
-            
+
     //         let nm = parseInt(nowTimeArray[1])
     //         let am = parseInt(arrivalArray[1])
     //         if (nm<am) {
@@ -79,7 +79,7 @@ $(document).ready(function(){
     // }
 
     // function doTodayMathThenCall(){
-        
+
     //     let nh = parseInt(nowTimeArray[0]);
     //     let nm = parseInt(nowTimeArray[1]);
     //     let ah = parseInt(arrivalArray[0]);
@@ -102,23 +102,23 @@ $(document).ready(function(){
 
     //     }
     //     doCallNow(arrivalUnix);
-        
+
     // }
 
     // function doTomorrowMathThenCall(){
-        
+
     //     let nh = parseInt(nowTimeArray[0]);
     //     let nm = parseInt(nowTimeArray[1]);
     //     let ah = parseInt(arrivalArray[0]);
     //     let am = parseInt(arrivalArray[1]);
-        
+
     //     let arrivalUnix = nowUnix;
 
     //     while (nh < 23) {
     //         arrivalUnix = arrivalUnix + 3600;
     //         nh++;
 
-            
+
     //     }
 
     //     while (nm < 59) {
@@ -130,7 +130,7 @@ $(document).ready(function(){
     //     while (i<ah) {
     //         arrivalUnix = arrivalUnix + 3600;
     //         i++;            
-            
+
     //     }
     //     let x = 0;
     //     while (x<=am) {
@@ -157,49 +157,49 @@ $(document).ready(function(){
 
 
 
-        // var xhttp = new XMLHttpRequest();
-        // xhttp.open("POST", queryURL, true);
-        // xhttp.setRequestHeader("Content-Type","application/json");
-        // xhttp.send();
-        // var response = JSON.parse(xhttp.responseText);
-//***************************************************************************** */
-        // let request = {
-        //     origin: homeBasePlus,
-        //     destination: destinationPlus,
-        //     // arrival_time: arrive
-        //     travelMode: 'DRIVING'
-        // }
+    // var xhttp = new XMLHttpRequest();
+    // xhttp.open("POST", queryURL, true);
+    // xhttp.setRequestHeader("Content-Type","application/json");
+    // xhttp.send();
+    // var response = JSON.parse(xhttp.responseText);
+    //***************************************************************************** */
+    // let request = {
+    //     origin: homeBasePlus,
+    //     destination: destinationPlus,
+    //     // arrival_time: arrive
+    //     travelMode: 'DRIVING'
+    // }
 
-        // directionsService.route(request, function(response, status) {
-        //     if (status == 'OK') {
-        //       console.log(response);
-        //     }
-        //   });
+    // directionsService.route(request, function(response, status) {
+    //     if (status == 'OK') {
+    //       console.log(response);
+    //     }
+    //   });
 
-//****************************************************************************** */
-
-
-
-        // fetch(queryURL, {method: 'GET', mode: 'no-cors'}).then(function(response){
-        //     console.log('status',response.status)
-        //     console.log(response);
-            
-        // })
+    //****************************************************************************** */
 
 
 
+    // fetch(queryURL, {method: 'GET', mode: 'no-cors'}).then(function(response){
+    //     console.log('status',response.status)
+    //     console.log(response);
+
+    // })
 
 
-        // var xhr = new XMLHttpRequest();
-        // xhr.open('GET', queryURL);
-
-        // console.log(xhr)
 
 
-        // $.getJSON(queryURL, function() {
-        //     console.log(data)
-        // })
-        
+
+    // var xhr = new XMLHttpRequest();
+    // xhr.open('GET', queryURL);
+
+    // console.log(xhr)
+
+
+    // $.getJSON(queryURL, function() {
+    //     console.log(data)
+    // })
+
 
 
     //     $.ajax({
@@ -211,26 +211,26 @@ $(document).ready(function(){
     //     })
     // }
 
-    
 
-     $.ajax({
-            url: "http://api.wunderground.com/api/31f7570bfbcd751b/hourly10day/q/MN/minneapolis.json",
-            method: "GET"
-        }).then(function(response) {
-            console.log(response)
-            
-            let weatherNow = response.hourly_forecast[0].feelslike.english
-            let weatherNowTime = response.hourly_forecast[0].FCTTIME.hour
-            weatherNowTime = Math.abs((weatherNowTime-12)*-1)
-            console.log(weatherNowTime)
-            $("#weatherZone").html('<h4>Right now it feels like '+response.hourly_forecast[0].feelslike.english+'° F outside')
-        })
-    
+
+    $.ajax({
+        url: "http://api.wunderground.com/api/31f7570bfbcd751b/hourly10day/q/MN/minneapolis.json",
+        method: "GET"
+    }).then(function (response) {
+        console.log(response)
+
+        let weatherNow = response.hourly_forecast[0].feelslike.english
+        let weatherNowTime = response.hourly_forecast[0].FCTTIME.hour
+        weatherNowTime = Math.abs((weatherNowTime - 12) * -1)
+        console.log(weatherNowTime)
+        $("#weatherZone").html('<h4>Right now it feels like ' + response.hourly_forecast[0].feelslike.english + '° F outside')
+    })
+
 
 
     // <div style="width: 100%"><iframe width="100%" height="500" src="https://maps.google.com/maps?width=100%&amp;height=500&amp;hl=en&amp;q=1845%20Aglen%20St&amp;ie=UTF8&amp;t=p&amp;z=13&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"><a href="https://www.maps.ie/create-google-map/">Embed Google Map</a></iframe></div><br />
 
-    
+
 
 
 
@@ -257,9 +257,9 @@ $(document).ready(function(){
 
 
 
-    
 
-    
+
+
 
     //https://maps.googleapis.com/maps/api/directions/json?origin=500+s+4th+st+minneapolis&destination=1845+aglen+st&key=AIzaSyDcyfK1TBzMPg3vSfH13tfFEdmX1imKe4Q
 
@@ -270,7 +270,7 @@ $(document).ready(function(){
 
 
 
-    
+
 
 
 

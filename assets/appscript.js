@@ -79,7 +79,7 @@ $(document).ready(function () {
     console.log(newUser.dateAdded);
 
     // Alert
-    alert("User successfully added");
+    alert("User Successfully Added");
 
   })
   // Create Firebase event for adding users to the database 
