@@ -43,19 +43,13 @@ $(document).ready(function () {
     e.preventDefault();
 
     // Grabs user input
-    let username = ("#username").val().trim();
+    let username = ("#userName").val().trim();
     let name = $("#name").val().trim();
     let randomFun = $("#giphy").val().trim();
     let event = $("#event0" + i).val().trim();
     let address = $("#address0" + i).val().trim();
     let arrivalTime = $("#arrivalTime").val().trim();
     console.log(username);
-    // let returningUser = 0;
-    // let userName = ["mustafa15ali"];
-    // let name = ["Moose"]
-    // let giphy = ["IDK"];
-    // let event0 = ["#eventTitle", "#eventLocation", "#eventTime"];
-    // let address0 = "UoM Campus";
 
     // Creates local "temporary" object for holding user data
     let newUser = {
@@ -82,7 +76,6 @@ $(document).ready(function () {
       dateAdded: firebase.database.ServerValue.TIMESTAMP
 
     });
-
 
     // Logs everything to console
     console.log(newUser.userName);
@@ -115,7 +108,6 @@ $(document).ready(function () {
     console.log(address);
     console.log(dateAdded);
   });
-
 
   function save(user) {
     var isAlreadyInserted = false;
