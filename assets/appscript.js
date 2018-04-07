@@ -136,10 +136,10 @@ $(document).ready(function () {
 
 });
 
-// // Grabbed values from text boxes
-// username = ("#username").val().trim();
-// name = $("#name").val().trim();
-// randomFun = $("#giphy").val().trim();
-// // Multiple addresses?  Not sure on the following: (Maybe these variables need to be in an array?)
-// address = $("#address"+ i).val().trim();
-// arrivalTime = $("#arrivalTime").val().trim();
+// Grabbed values from text boxes
+username = ("#username").val().trim();
+name = $("#name").val().trim();
+randomFun = $("#giphy").val().trim();
+// Multiple addresses?  Not sure on the following: (Maybe these variables need to be in an array?)
+address = $("#address"+ i).val().trim();
+arrivalTime = $("#arrivalTime").val().trim();
