@@ -10,11 +10,14 @@
 @import url('https://fonts.googleapis.com/css?family=Alegreya+Sans+SC');
 @import url('https://fonts.googleapis.com/css?family=Julius+Sans+One');
 @import url('https://fonts.googleapis.com/css?family=Playfair+Display+SC');
+
+
 body {
   background: url("images/city-40.png") ghostwhite;
   background-size: 100%;
   margin: 20px;
 }
+
 
 h2 {
   /*font-family: 'Chicle', cursive;
@@ -33,9 +36,31 @@ h2 {
   /*text-shadow: 1px 1px 1px*/
 }
 
+
 #map {
   height: 600px;
 }
+
+
+#signin {
+  height: 150px;
+}
+
+
+#signin-buttons {
+  padding-top: 25px;
+  /*padding-left: 200px;
+  text-align: center;*/
+}
+
+
+#add-remove-buttons {
+  padding-top: 25px;
+  /*padding-left: 850px;
+  text-align: center;*/
+
+}
+
 
 input[type=text] {
   color: white;
