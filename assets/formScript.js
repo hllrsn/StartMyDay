@@ -1,5 +1,17 @@
 $(document).ready(function(){
 
+    var config = {
+        apiKey: "AIzaSyDKxbhfLyIhZDvq7CpT7Ate8pLAyrSjFM8",
+        authDomain: "startmyday-58618.firebaseapp.com",
+        databaseURL: "https://startmyday-58618.firebaseio.com",
+        projectId: "startmyday-58618",
+        storageBucket: "startmyday-58618.appspot.com",
+        messagingSenderId: "1033136648561"
+    };
+    firebase.initializeApp(config);
+    
+    let database = firebase.database();
+
 
     let hasConfiguration = 1;
     let userName = "Peter Anderson";
@@ -14,6 +26,15 @@ $(document).ready(function(){
 
     let homeBasePlus = homeBase.split(" ").join("+")
     let destinationPlus = destinationAddress.split(" ").join("+");
+
+    database.ref().on("value",function(snapshot){
+        snap = snapshot.val();
+        $("#trainsTable").html("<tr><th>Train Name</th><th>Destination</th>        <th>Frequency (Minutes)</th>        <th>Next Arrival</th>        <th>Minutes Away</th>    </tr>");
+        snapshot.forEach(function(childSnap){
+            console.log(childSnap.val());
+
+        })
+    })
 
     let injectMap = '<iframe  width="100%"  height="100%"  frameborder="0" style="border:0"  src="https://www.google.com/maps/embed/v1/directions?key='+embedKey+'&origin='+homeBasePlus+'&destination='+destinationPlus+'" allowfullscreen></iframe>'
     $("#map").html(injectMap)
@@ -183,12 +204,14 @@ $(document).ready(function(){
 
     
 
-    //  $.ajax({
-    //         url: "http://api.wunderground.com/api/31f7570bfbcd751b/hourly10day/q/MN/minneapolis.json",
-    //         method: "GET"
-    //     }).then(function(response) {
-    //         console.log(this)
-    //     })
+     $.ajax({
+            url: "http://api.wunderground.com/api/31f7570bfbcd751b/hourly10day/q/MN/minneapolis.json",
+            method: "GET"
+        }).then(function(response) {
+            console.log(response.hourly_forecast[0].feelslike.english)
+            $("#weatherZone").html('<h4>Right now it feels like '+response.hourly_forecast[0].feelslike.english+'° F outside')
+        })
+    
 
 
     // <div style="width: 100%"><iframe width="100%" height="500" src="https://maps.google.com/maps?width=100%&amp;height=500&amp;hl=en&amp;q=1845%20Aglen%20St&amp;ie=UTF8&amp;t=p&amp;z=13&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"><a href="https://www.maps.ie/create-google-map/">Embed Google Map</a></iframe></div><br />
