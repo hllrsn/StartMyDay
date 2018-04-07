@@ -1,0 +1,9 @@
+body {
+    background: url("images/city-40.png") ghostwhite;
+    background-size: 100%;
+    margin: 20px;
+  }
+
+ input[type=text] {
+     color: white;
+ }
