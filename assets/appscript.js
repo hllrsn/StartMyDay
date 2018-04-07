@@ -1,7 +1,7 @@
 $(document).ready(function () {
   // Initialize Firebase
   var config = {
-    apiKey: "AIzaSyDKxbhfLyIhZDvq7CpT7Ate8pLAyrSjFM8",
+    apiKey: "AIzaSyCwDbNkPSJohyGHoqunAj_scT8XRK0kvgk",
     authDomain: "startmyday-58618.firebaseapp.com",
     databaseURL: "https://startmyday-58618.firebaseio.com",
     projectId: "startmyday-58618",

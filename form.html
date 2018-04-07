@@ -43,7 +43,7 @@
         <div class="row" id="events">
 
             <div class="input-field col s4"id= "eventRow0">
-                <input placeholder="Event" id="event0" type="text" class="validate">
+                <input placeholder="event" id="event0" type="text" class="validate">
                 <label for="event">Where are you going today?</label>
             </div>
             <div class="input-field col s4">
@@ -52,7 +52,7 @@
             </div>
             
             <div class="input-field col s2">
-                <input id="arrivalTime0" class="timepicker"><i class="material-icons">access_time</i>
+                <input type="text" id="arrivalTime" class="timepicker"><i class="material-icons">access_time</i>
                 <label for="arrivalTime">Arrival Time</label>
 
                     <script>
@@ -66,13 +66,40 @@
     
         </div>
         
-        <button class="btn waves-effect waves-light" type="submit" name="action">Submit<i class="material-icons right teal">fingerprint</i></button>
-        
+        <button class="btn waves-effect waves-light" id="submit" type="submit" name="action">Submit<i class="material-icons right teal">fingerprint</i></button>
+            <script>
+                $("#submit").on("click", function(event) {
+                    event.preventDefault();
+                    console.log("submit button clicked");
+
+                    // Grabbed values from text boxes
+                    // username = ("#username").val().trim();
+                    // name = $("#name").val().trim();
+                    // randomFun = $("#giphy").val().trim();
+                    // // Multiple addresses?  Not sure on the following: (Maybe these variables need to be in an array?)
+                    // address = $("#address"+ i).val().trim();
+                    // arrivalTime = $("#arrivalTime").val().trim();
+
+
+                    // // Push to Firebase:
+                    // database.ref().push({
+                    // username: username,
+                    // name: name,
+                    // randomFun: randomFun,
+                    // address: address,
+                    // arrivalTime: arrivalTime,
+                    // dateAdded: firebase.database.ServerValue.TIMESTAMP
+                    // });
+
+                    // Go to main.html
+                    window.location.href = "main.html"
+                });
+            </script>
     </form>
     </div>
 </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
-    <script src="./assets/appscript.js"></script>
+    <!-- <script src="./assets/appscript.js"></script> -->
 </body>
 </html>

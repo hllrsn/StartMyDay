@@ -171,7 +171,8 @@ $(document).ready(function(){
 
         $.ajax({
             url: queryURL,
-            method: "GET"
+            method: "GET",
+            dataType: 'json'
         }).then(function(response) {
             console.log(this)
         })
