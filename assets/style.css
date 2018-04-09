@@ -14,38 +14,47 @@
 
 body {
   background: url("images/city-40.png") ghostwhite;
-  background-attachment: fixed;
-
   background-size: 100%;
+  background-attachment: fixed;
   margin: 10px;
+  /*font-size: large;*/
 }
+
 
 #enterinfo {
   padding: 5%;
 }
 
+
 #welcome {
   font-family: 'Merienda', cursive;
+  /*padding-bottom: 25px;*/
+}
+
+
+h2 {
+  /*font-family: 'Merienda', cursive;*/
+  font-family: 'Playfair Display SC', serif;
+  font-weight: bold;
 }
 
 
 h4 {
   /*font-family: 'Chicle', cursive;
-      font-family: 'Poppins', sans-serif;
-      font-family: 'Yatra One', cursive;
-      font-family: 'Josefin Sans', sans-serif;
-      font-family: 'Work Sans', sans-serif;
-      font-family: 'Montserrat', sans-serif;
-      font-family: 'Amaranth', sans-serif;
-      font-family: 'Unica One', cursive;
-      font-family: 'Merienda', cursive;
-      font-family: 'Alegreya Sans SC', sans-serif;
-      font-family: 'Julius Sans One', sans-serif;*/
+  font-family: 'Poppins', sans-serif;
+  font-family: 'Yatra One', cursive;
+  font-family: 'Josefin Sans', sans-serif;
+  font-family: 'Work Sans', sans-serif;
+  font-family: 'Montserrat', sans-serif;
+  font-family: 'Amaranth', sans-serif;
+  font-family: 'Unica One', cursive;
+  font-family: 'Merienda', cursive;
+  font-family: 'Alegreya Sans SC', sans-serif;
+  font-family: 'Julius Sans One', sans-serif;*/
   font-family: 'Playfair Display SC', serif;
   font-weight: bold;
-  margin: 0px;
-  padding: 0px;
-  
+  /*margin: 0px;
+  padding: 0px;*/
 }
 
 
@@ -74,14 +83,14 @@ h4 {
 }
 
 #depart, #arrive, #map, #weatherZone, #weatherZoneWeek, #enterinfo, #signin, #card-div {
-
   border-radius: 5px;
 }
 
 
-input[type=text] {
-  color: white;
+#depart, #arrive, #map, #weatherZone, #weatherZoneWeek {
+  font-size: large;
 }
+
 
 #weatherDiv {
   text-align: center;
@@ -89,18 +98,25 @@ input[type=text] {
   padding: 5px;
   margin-left: 20px;
   margin-right: 20px;
-  
 }
+
 
 #card-div {
   padding-left: 10%;
 }
 
-#editButtonDiv {
+
+/*#editButtonDiv {
   padding: 0px;
-}
+}*/
+
 
 .card-panel {
   margin: 2px;
   padding: 15px;
+}
+
+
+input[type=text] {
+  color: white;
 }
