@@ -11,12 +11,14 @@ $(document).ready(function () {
     firebase.initializeApp(config);
 
     const database = firebase.database();
-    const localUser = localStorage.getItem("localUser")
+    const localUser = localStorage.getItem('localUser')
+    console.log(localUser)
 
    
 
     let hasConfiguration = 1;
     let userName = "user";
+    let fullName = "user"
     let events = ["work", "550 S 4th St Minneapolis", "07:55"];
     let destinationTitle = events[0];
     let destinationAddress = events[1];
@@ -26,10 +28,10 @@ $(document).ready(function () {
     let embedKey = "AIzaSyDSCagDC4_ojyUv1k-8GuSelE_67iLSj3w"
     // var directionsService = new google.maps.DirectionsService();
 
-    function welcome() {
-            $("#welcome").text("Welcome " + fullName + ",")
+    function welcome(name) {
+            $("#welcome").text("Welcome " + name + ",")
         }
-    console.log(userName);
+    console.log(name);
     
 
 
@@ -37,18 +39,23 @@ $(document).ready(function () {
         console.log(snapshot.val().users)
         // let appUsers = snapshot.val().users;
         let userIsFound = "false"
-        let userToCheck = user
+        let userToCheck = localUser
         userIsFound = snapshot.val().users;
-        console.log(userIsFound[userToCheck].userName)
-        welcome();
-        // if (userIsFound === "mustafa") {
-        //     console.log("yay!")
+
+        fullName = userIsFound[userToCheck].fullName;
+        welcome(fullName);
 
         userName = userIsFound[localUser].userName;
         destinationTitle = userIsFound[localUser].event[0];
+        destinationAddress = userIsFound[localUser].event[1];
+        let destinationPlus = destinationAddress.split(" ").join("+");
+        homeBase = userIsFound[localUser].userAddress;
+        let homeBasePlus = homeBase.split(" ").join("+")
+
+        mapInjector(embedKey, homeBasePlus, destinationPlus)
     })
-    let homeBasePlus = homeBase.split(" ").join("+")
-    let destinationPlus = destinationAddress.split(" ").join("+");
+    
+    
 
     
 
@@ -59,7 +66,7 @@ $(document).ready(function () {
     // })
 
     function mapInjector(key, origin, destination){
-        let injectMap = '<iframe  width="100%"  height="100%"  frameborder="0" style="border:0"  src="https://www.google.com/maps/embed/v1/directions?key=' + embedKey + '&origin=' + homeBasePlus + '&destination=' + destinationPlus + '" allowfullscreen></iframe>'
+        let injectMap = '<iframe  width="100%"  height="100%"  frameborder="0" style="border:0"  src="https://www.google.com/maps/embed/v1/directions?key=' + key + '&origin=' + origin + '&destination=' + destination + '" allowfullscreen></iframe>'
         $("#map").html(injectMap)
     }
 
@@ -234,12 +241,12 @@ $(document).ready(function () {
         url: "http://api.wunderground.com/api/31f7570bfbcd751b/hourly10day/q/MN/minneapolis.json",
         method: "GET"
     }).then(function (response) {
-        console.log(response)
+        // console.log(response)
 
         let weatherNow = response.hourly_forecast[0].feelslike.english
         let weatherNowTime = response.hourly_forecast[0].FCTTIME.hour
         weatherNowTime = Math.abs((weatherNowTime - 12) * -1)
-        console.log(weatherNowTime)
+        // console.log(weatherNowTime)
 
         let counter = 0;
         for (let i=0;i<7;i++){
@@ -264,7 +271,7 @@ $(document).ready(function () {
             weatherDiv += "<img src='./assets/images/"+response.hourly_forecast[counter].icon+".png' class='responsive-img'><br>";
 
             weatherDiv += response.hourly_forecast[counter].feelslike.english+"° F</div>"
-            console.log(weatherDiv)
+            // console.log(weatherDiv)
             counter = counter + 1
             if(counter === 0){
                 $("#weatherZone").html("")
@@ -281,7 +288,7 @@ $(document).ready(function () {
             // let weatherTime = Math.abs((response.hourly_forecast[counter2].FCTTIME.hour - 12) * -1)
             var date = moment().add(i,'days').format('dddd');
             // date = date.add(i,'days')
-            console.log(date)
+            // console.log(date)
             // var dow = date.day();
             weatherDOW = date
             if (counter === 0){
@@ -292,7 +299,7 @@ $(document).ready(function () {
             weatherDiv += "<img src='./assets/images/"+response.hourly_forecast[counter2].icon+".png' class='responsive-img'><br>";
 
             weatherDiv += response.hourly_forecast[counter2].feelslike.english+"° F</div>"
-            console.log(weatherDiv)
+            // console.log(weatherDiv)
             counter2 = counter2 + 24
             if(counter2 === 0){
                 $("#weatherZoneWeek").html("")
