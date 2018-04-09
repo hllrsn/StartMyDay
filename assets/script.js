@@ -23,7 +23,7 @@ $("#submit").on("click", function (event) {
             console.log(user);
             if (user) {
                 console.log("user");
-                localStorage.setItem('localUser',user)
+                localStorage.setItem('localUser',username)
                 window.location.href = "main.html";
             } else {
                 console.log("not a user");
