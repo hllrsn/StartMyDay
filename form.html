@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,98 +10,102 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
     <link rel="stylesheet" href="assets/style.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 
     <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
 
     <title>Start My Day</title>
 </head>
+
 <body>
-    <br>
-<div class="container">
-    <div class="card-panel blue-grey darken-3 z-depth-5">
-        <form class="col s12">
-        <div class="input-field ">
-            <input id="username" type="text" class="validate">
-            <label for="username"> Username: </label>
-            </div>
 
-        <div class="input-field">
-            <input id="name" type="text" class="validate">
-            <label for="name">Name:</label>
+    <div class="row">
+        <div class="col s12">
+            <div class="card-panel transparent z-depth-5">
+                <h2 class="header white-text center">Start My Day</h2>
+            </div>
         </div>
-        
-        <div class="row">
-                <div class="input-field col s12">
-                    <input id="giphy" type="text" class="validate">
-                    <label for="giphy">Random-Fun-Generator  <small> (multiple items separated by commas) </small> : </label>
-                </div>
-            </div>
-        <p class="teal-text text-lighten-1">Where are you going today?</p>
-        <div class="row" id="events">
 
-            <div class="input-field col s4">
-                <input id="event0" type="text" class="validate">
-                <label for="event">Event</label>
-            </div>
-            
-            <div class="input-field col s4">
-                <input id="address0" type="text" class="validate">
-                <label for="address">Address</label>
-            </div>
-            
-            <div class="input-field col s2">
-                <input type="text" id="arrivalTime" class="timepicker"><i class="material-icons">access_time</i>
-                <label for="arrivalTime">Arrival Time</label>
-
-                    <script>
-                        $(document).ready(function(){
-                            $('.timepicker').timepicker();
-                        });
-                    </script>
-                </div>   
-                <a class="btn-floating btn-medium waves-effect waves-light waves-teal lighten-2" id="addButton"><i class="material-icons">add</i></a>
-                <a class="btn-floating btn-medium waves-effect waves-light waves-teal lighten-2" id="removeButton"><i class="material-icons">remove</i></a>
-    
-        </div>
-        
-        <button class="btn waves-effect waves-light" id="submit" type="submit" name="action">Submit<i class="material-icons right teal">fingerprint</i></button>
-            <script>
-                $("#submit").on("click", function(event) {
-                    event.preventDefault();
-                    console.log("submit button clicked");
-
-                    // Grabbed values from text boxes
-                    // username = ("#username").val().trim();
-                    // name = $("#name").val().trim();
-                    // randomFun = $("#giphy").val().trim();
-                    // // Multiple addresses?  Not sure on the following: (Maybe these variables need to be in an array?)
-                    // address = $("#address"+ i).val().trim();
-                    // arrivalTime = $("#arrivalTime").val().trim();
-
-
-                    // // Push to Firebase:
-                    // database.ref().push({
-                    // username: username,
-                    // name: name,
-                    // randomFun: randomFun,
-                    // address: address,
-                    // arrivalTime: arrivalTime,
-                    // dateAdded: firebase.database.ServerValue.TIMESTAMP
-                    // });
-
-                    // Go to main.html
-                    window.location.href = "main.html"
-                });
-            </script>
-    </form>
     </div>
-</div>
+
+
+    <br>
+    <div class="container">
+        <div class="card-panel blue-grey darken-3 z-depth-5" id="enterinfo">
+            <form class="col s12">
+                <div class="input-field ">
+                    <input id="userName" type="text" class="validate">
+                    <label for="username"> Username: </label>
+
+                </div>
+
+                <div class="input-field">
+                    <input id="name" type="text" class="validate">
+                    <label for="name">Name:</label>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s4">
+                        <input id="giphy" type="text" class="validate">
+                        <label for="giphy">Random-Fun-Generator:</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s4">
+                        <input id="home" type="text" class="validate">
+                        <label for="home">Home Address:</label>
+                    </div>
+                </div>
+
+                <p class="teal-text text-lighten-1">Where are you going today?</p>
+                <div class="row" id="events">
+
+                    <div class="input-field col s4" id="eventRow0">
+                        <input placeholder="event" id="event0" type="text" class="validate">
+                        <label for="event">Where are you going today?</label>
+                    </div>
+                    <div class="input-field col s4">
+                        <input id="address0" type="text" class="validate">
+                        <label for="address">Address</label>
+                    </div>
+
+                    <div class="input-field col s2">
+                        <input type="text" id="arrivalTime" class="timepicker">
+                        <i class="material-icons white-text">access_time</i>
+                        <label for="arrivalTime">Arrival Time</label>
+
+                        <script>
+                            $(document).ready(function () {
+                                $('.timepicker').timepicker();
+                            });
+                        </script>
+                    </div>
+                    <div id="add-remove-buttons">
+                    <a class="btn-floating btn-medium waves-effect waves-light waves-teal lighten-2" id="addButton">
+                        <i class="material-icons">add</i>
+                    </a>
+                    <a class="btn-floating btn-medium waves-effect waves-light waves-teal lighten-2" id="removeButton">
+                        <i class="material-icons">remove</i>
+                    </a>
+                    </div>
+
+                </div>
+
+            </form>
+            <button class="btn waves-effect waves-light" id="submit">Submit
+                <i class="material-icons right teal lighten-1">fingerprint</i>
+            </button>
+
+        </div>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
-    <!-- <script src="./assets/appscript.js"></script> -->
+    <script src="./assets/appscript.js"></script>
 </body>
+
 </html>

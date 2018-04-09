@@ -16,9 +16,11 @@ body {
   background: url("images/city-40.png") ghostwhite;
   background-repeat: no-repeat;
   background-attachment: fixed;
+
   background-size: 100%;
   margin: 20px;
 }
+
 
 h3 {
   /*font-family: 'Chicle', cursive;
@@ -62,8 +64,8 @@ h3 {
 
 }
 
-
 #depart, #arrive, #map, #weatherZone, #weatherZoneWeek, #enterinfo, #signin, #card-div {
+
   border-radius: 5px;
 }
 
