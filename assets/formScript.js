@@ -1,7 +1,3 @@
-<<<<<<< Updated upstream
-$(document).ready(function(){
-
-=======
 $(document).ready(function () {
 
     const config = {
@@ -18,16 +14,16 @@ $(document).ready(function () {
     const user = localStorage.getItem("user")
 
    
->>>>>>> Stashed changes
 
     let hasConfiguration = 1;
     let userName = "Peter Anderson";
-    let events = ["work","550 S 4th St Minneapolis","07:55"];
+    let events = ["work", "550 S 4th St Minneapolis", "07:55"];
     let destinationTitle = events[0];
     let destinationAddress = events[1];
     let arrivalTime = events[2];
     let homeBase = "1845 Aglen St Roseville";
     let queryURL = "https://maps.googleapis.com/maps/api/directions/json?";
+    let embedKey = "AIzaSyDSCagDC4_ojyUv1k-8GuSelE_67iLSj3w"
     // var directionsService = new google.maps.DirectionsService();
     function welcome() {
             $("#welcome").text("Welcome " + userName + ",")
@@ -35,183 +31,195 @@ $(document).ready(function () {
     console.log(userName);
     welcome();
 
+    database.ref().on("value", function (snapshot) {
+        console.log(snapshot.val().users)
+        // let appUsers = snapshot.val().users;
+        let userIsFound = "false"
+        let userToCheck = user
+        userIsFound = snapshot.val().users;
+        console.log(userIsFound[userToCheck].userName)
+        // if (userIsFound === "mustafa") {
+        //     console.log("yay!")
+    })
     let homeBasePlus = homeBase.split(" ").join("+")
     let destinationPlus = destinationAddress.split(" ").join("+");
 
-    let arrivalArray = arrivalTime.split(":");
-    let nowTime = moment().format("HH:mm");
-    // console.log(nowTime)
-    let nowUnix = moment().unix();
-    let nowTimeArray = nowTime.split(":");
-
-    let n = parseInt(nowTimeArray[0]);
-    let a = parseInt(arrivalArray[0]);
-
     
 
 
-    
-    if (n<a){
-       doTodayMathThenCall();
+    // snapshot.forEach(function(childSnap){
+    // console.log(childSnap.val().users.val());
 
-       
-    } else {
-        if (n===a) {
-            
-            let nm = parseInt(nowTimeArray[1])
-            let am = parseInt(arrivalArray[1])
-            if (nm<am) {
-                doTodayMathThenCall();
-            } else {
-                doTomorrowMathThenCall();
-            }
-        }   
-        doTomorrowMathThenCall();
-    }
+    // })
 
-    function doTodayMathThenCall(){
-        
-        let nh = parseInt(nowTimeArray[0]);
-        let nm = parseInt(nowTimeArray[1]);
-        let ah = parseInt(arrivalArray[0]);
-        let am = parseInt(arrivalArray[1]);
-        console.log(nh,nm,ah,am)
-        let arrivalUnix = nowUnix;
-
-        let hDiff = ah-nh;
-        arrivalUnix = arrivalUnix + (60*hDiff);
-
-        while (nm < 59) {
-            arrivalUnix = arrivalUnix + 60;
-            nm++;
-
-        }
-        let x = 0;
-        while (x<=am) {
-            arrivalUnix = arrivalUnix + 60;
-            x++;
-
-        }
-        doCallNow(arrivalUnix);
-        
-    }
-
-    function doTomorrowMathThenCall(){
-        
-        let nh = parseInt(nowTimeArray[0]);
-        let nm = parseInt(nowTimeArray[1]);
-        let ah = parseInt(arrivalArray[0]);
-        let am = parseInt(arrivalArray[1]);
-        
-        let arrivalUnix = nowUnix;
-
-        while (nh < 23) {
-            arrivalUnix = arrivalUnix + 3600;
-            nh++;
-
-            
-        }
-
-        while (nm < 59) {
-            arrivalUnix = arrivalUnix + 60;
-            nm++;
-
-        }
-        let i = 0;
-        while (i<ah) {
-            arrivalUnix = arrivalUnix + 3600;
-            i++;            
-            
-        }
-        let x = 0;
-        while (x<=am) {
-            arrivalUnix = arrivalUnix + 60;
-            x++;
-
-        }
-
-        doCallNow(arrivalUnix);
-    }
-
-    function doCallNow(arrive) {
-        let originString = "origin="+homeBasePlus;
-        let destinationString = "destination="+destinationPlus;
-        let arrivalString = "arrival_time="+arrive;
-        let apiKey = "key=AIzaSyCzwsje2Kj1pj97lj81UmrEOmPci7988XU";
-
-        queryURL = queryURL.concat(originString);
-        queryURL = queryURL.concat("&"+destinationString);
-        queryURL = queryURL.concat("&"+arrivalString);
-        queryURL = queryURL.concat("&"+apiKey);
-        console.log(queryURL)
-
-
-
-
-        // var xhttp = new XMLHttpRequest();
-        // xhttp.open("POST", queryURL, true);
-        // xhttp.setRequestHeader("Content-Type","application/json");
-        // xhttp.send();
-        // var response = JSON.parse(xhttp.responseText);
-//***************************************************************************** */
-        // let request = {
-        //     origin: homeBasePlus,
-        //     destination: destinationPlus,
-        //     // arrival_time: arrive
-        //     travelMode: 'DRIVING'
-        // }
-
-        // directionsService.route(request, function(response, status) {
-        //     if (status == 'OK') {
-        //       console.log(response);
-        //     }
-        //   });
-
-//****************************************************************************** */
-
-
-
-        // fetch(queryURL, {method: 'GET', mode: 'no-cors'}).then(function(response){
-        //     console.log('status',response.status)
-        //     console.log(response);
-            
-        // })
-
-
-
-
-
-        // var xhr = new XMLHttpRequest();
-        // xhr.open('GET', queryURL);
-
-        // console.log(xhr)
-
-
-        // $.getJSON(queryURL, function() {
-        //     console.log(data)
-        // })
-        
-
-
-        $.ajax({
-            url: queryURL,
-            method: "GET",
-            dataType: 'json'
-        }).then(function(response) {
-            console.log(this)
-        })
+    function mapInjector(key, origin, destination){
+        let injectMap = '<iframe  width="100%"  height="100%"  frameborder="0" style="border:0"  src="https://www.google.com/maps/embed/v1/directions?key=' + embedKey + '&origin=' + homeBasePlus + '&destination=' + destinationPlus + '" allowfullscreen></iframe>'
+        $("#map").html(injectMap)
     }
 
     
+    // let arrivalArray = arrivalTime.split(":");
+    // let nowTime = moment().format("HH:mm");
 
-    //  $.ajax({
-    //         url: "http://api.wunderground.com/api/31f7570bfbcd751b/hourly10day/q/MN/minneapolis.json",
-    //         method: "GET"
+    // let nowUnix = moment().unix();
+    // let nowTimeArray = nowTime.split(":");
+
+    // let n = parseInt(nowTimeArray[0]);
+    // let a = parseInt(arrivalArray[0]);
+
+
+
+
+
+    // if (n<a){
+    //    doTodayMathThenCall();
+
+
+    // } else {
+    //     if (n===a) {
+
+    //         let nm = parseInt(nowTimeArray[1])
+    //         let am = parseInt(arrivalArray[1])
+    //         if (nm<am) {
+    //             doTodayMathThenCall();
+    //         } else {
+    //             doTomorrowMathThenCall();
+    //         }
+    //     }   
+    //     doTomorrowMathThenCall();
+    // }
+
+    // function doTodayMathThenCall(){
+
+    //     let nh = parseInt(nowTimeArray[0]);
+    //     let nm = parseInt(nowTimeArray[1]);
+    //     let ah = parseInt(arrivalArray[0]);
+    //     let am = parseInt(arrivalArray[1]);
+    //     console.log(nh,nm,ah,am)
+    //     let arrivalUnix = nowUnix;
+
+    //     let hDiff = ah-nh;
+    //     arrivalUnix = arrivalUnix + (60*hDiff);
+
+    //     while (nm < 59) {
+    //         arrivalUnix = arrivalUnix + 60;
+    //         nm++;
+
+    //     }
+    //     let x = 0;
+    //     while (x<=am) {
+    //         arrivalUnix = arrivalUnix + 60;
+    //         x++;
+
+    //     }
+    //     doCallNow(arrivalUnix);
+
+    // }
+
+    // function doTomorrowMathThenCall(){
+
+    //     let nh = parseInt(nowTimeArray[0]);
+    //     let nm = parseInt(nowTimeArray[1]);
+    //     let ah = parseInt(arrivalArray[0]);
+    //     let am = parseInt(arrivalArray[1]);
+
+    //     let arrivalUnix = nowUnix;
+
+    //     while (nh < 23) {
+    //         arrivalUnix = arrivalUnix + 3600;
+    //         nh++;
+
+
+    //     }
+
+    //     while (nm < 59) {
+    //         arrivalUnix = arrivalUnix + 60;
+    //         nm++;
+
+    //     }
+    //     let i = 0;
+    //     while (i<ah) {
+    //         arrivalUnix = arrivalUnix + 3600;
+    //         i++;            
+
+    //     }
+    //     let x = 0;
+    //     while (x<=am) {
+    //         arrivalUnix = arrivalUnix + 60;
+    //         x++;
+
+    //     }
+
+    //     doCallNow(arrivalUnix);
+    // }
+
+    // function doCallNow(arrive) {
+    //     let originString = "origin="+homeBasePlus;
+    //     let destinationString = "destination="+destinationPlus;
+    //     let arrivalString = "arrival_time="+arrive;
+    //     let apiKey = "key=AIzaSyCzwsje2Kj1pj97lj81UmrEOmPci7988XU";
+
+    //     queryURL = queryURL.concat(originString);
+    //     queryURL = queryURL.concat("&"+destinationString);
+    //     queryURL = queryURL.concat("&"+arrivalString);
+    //     queryURL = queryURL.concat("&"+apiKey);
+    //     console.log(queryURL)
+
+
+
+
+    // var xhttp = new XMLHttpRequest();
+    // xhttp.open("POST", queryURL, true);
+    // xhttp.setRequestHeader("Content-Type","application/json");
+    // xhttp.send();
+    // var response = JSON.parse(xhttp.responseText);
+    //***************************************************************************** */
+    // let request = {
+    //     origin: homeBasePlus,
+    //     destination: destinationPlus,
+    //     // arrival_time: arrive
+    //     travelMode: 'DRIVING'
+    // }
+
+    // directionsService.route(request, function(response, status) {
+    //     if (status == 'OK') {
+    //       console.log(response);
+    //     }
+    //   });
+
+    //****************************************************************************** */
+
+
+
+    // fetch(queryURL, {method: 'GET', mode: 'no-cors'}).then(function(response){
+    //     console.log('status',response.status)
+    //     console.log(response);
+
+    // })
+
+
+
+
+
+    // var xhr = new XMLHttpRequest();
+    // xhr.open('GET', queryURL);
+
+    // console.log(xhr)
+
+
+    // $.getJSON(queryURL, function() {
+    //     console.log(data)
+    // })
+
+
+
+    //     $.ajax({
+    //         url: queryURL,
+    //         method: "GET",
+    //         dataType: 'json'
     //     }).then(function(response) {
     //         console.log(this)
     //     })
-<<<<<<< Updated upstream
-=======
     // }
 
 
@@ -276,12 +284,11 @@ $(document).ready(function () {
         
     })
 
->>>>>>> Stashed changes
 
 
     // <div style="width: 100%"><iframe width="100%" height="500" src="https://maps.google.com/maps?width=100%&amp;height=500&amp;hl=en&amp;q=1845%20Aglen%20St&amp;ie=UTF8&amp;t=p&amp;z=13&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"><a href="https://www.maps.ie/create-google-map/">Embed Google Map</a></iframe></div><br />
 
-    
+
 
 
 
@@ -308,19 +315,20 @@ $(document).ready(function () {
 
 
 
-    
 
-    
+
+
 
     //https://maps.googleapis.com/maps/api/directions/json?origin=500+s+4th+st+minneapolis&destination=1845+aglen+st&key=AIzaSyDcyfK1TBzMPg3vSfH13tfFEdmX1imKe4Q
 
     //geolocation = AIzaSyDily5OeCJQzyEUkBoXCaYbu9CQ5HauYXU
     //directions = AIzaSyCzwsje2Kj1pj97lj81UmrEOmPci7988XU
     //maps = AIzaSyDhNrKK89X09tx7PxILd7CKgxLzbrQZRjs
+    //embed = AIzaSyDSCagDC4_ojyUv1k-8GuSelE_67iLSj3w
 
 
 
-    
+
 
 
 

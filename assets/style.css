@@ -1,10 +1,18 @@
+@import url('https://fonts.googleapis.com/css?family=Chicle');
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+@import url('https://fonts.googleapis.com/css?family=Yatra+One');
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+@import url('https://fonts.googleapis.com/css?family=Work+Sans');
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+@import url('https://fonts.googleapis.com/css?family=Amaranth');
+@import url('https://fonts.googleapis.com/css?family=Unica+One');
+@import url('https://fonts.googleapis.com/css?family=Merienda');
+@import url('https://fonts.googleapis.com/css?family=Alegreya+Sans+SC');
+@import url('https://fonts.googleapis.com/css?family=Julius+Sans+One');
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display+SC');
+
+
 body {
-<<<<<<< Updated upstream
-    background: url("images/city-40.png") ghostwhite;
-    background-size: 100%;
-    margin: 20px;
-  }
-=======
   background: url("images/city-40.png") ghostwhite;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -59,14 +67,11 @@ h3 {
   border-radius: 5px;
 }
 
->>>>>>> Stashed changes
 
- input[type=text] {
-     color: white;
- }
+input[type=text] {
+  color: white;
+}
 
-<<<<<<< Updated upstream
-=======
 #weatherDiv {
   text-align: center;
   /* width: 128px; */
@@ -75,7 +80,3 @@ h3 {
   margin-right: 20px;
 }
 
-#card-div {
-  text-align: center;
-}
->>>>>>> Stashed changes
