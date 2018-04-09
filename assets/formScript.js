@@ -270,7 +270,7 @@ $(document).ready(function () {
             url: "http://api.wunderground.com/api/31f7570bfbcd751b/hourly10day/q/MN/"+location+".json",
             method: "GET"
         }).then(function (response) {
-            // console.log(response)
+            console.log(response)
     
             let weatherNow = response.hourly_forecast[0].feelslike.english
             let weatherNowTime = response.hourly_forecast[0].FCTTIME.hour
