@@ -68,6 +68,12 @@ $(document).ready(function () {
 
     // })
 
+    $("#logoutButton").on("click", function(){
+        localStorage.setItem('localUser',undefined)
+        window.location.href = "index.html"
+    })
+
+
     function mapInjector(key, origin, destination){
         let injectMap = '<iframe  width="100%"  height="100%"  frameborder="0" style="border:0"  src="https://www.google.com/maps/embed/v1/directions?key=' + key + '&origin=' + origin + '&destination=' + destination + '" allowfullscreen></iframe>'
         $("#map").html(injectMap)
