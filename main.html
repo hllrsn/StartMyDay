@@ -42,15 +42,19 @@
   <title>Start My Day</title>
 
 </head>
+
 <body>
+  
   <div class="container">
-    <h3 id="welcome"></h3>
+    <h3 id="welcome" class="grey-text text-darken-4"></h3>
   </div>
   
+
   <div class="container" id="main-container">
 
     
     <div id="departure" class="row">
+
         <div class="col s12 m6">
           <h4 class="header grey-text text-darken-4 center">Departure</h4>
           <div class="card-panel blue-grey darken-3 z-depth-5" id="depart">
@@ -58,17 +62,13 @@
           </div>
         </div>
       
-
-      
         <div id= "arrival" class="col s12 m6">
           <h4 class="header grey-text text-darken-4 center">Arrival</h4>
-
           <div class="card-panel blue-grey darken-3 z-depth-5" id="arrive">
             <span class="white-text" id="arrivalLocation">Destination and arrival time.</span>
           </div>
         </div>
       
-
     </div>
 
     
@@ -76,26 +76,26 @@
       
         <div class="col s12">
           <h4 class="header grey-text text-darken-4 center">Travel Conditions</h4>
-
           <div class="card-panel blue-grey darken-3 z-depth-5" id="map">
             <!-- <span class="white-text">Map with driving conditions.</span> -->
           </div>
         </div>
+    
     </div>
 
 
     <div class="row">
 
-      <div id="weather" class="col s12 ">
+      <div id="weather" class="col s12">
         <h4 class="header grey-text text-darken-4 center">Today's Weather</h4>
         <div class="card-panel center-align blue-grey darken-3 z-depth-5 white-text" id="card-div">
             <div class="row">
-              <div id="weatherZone"></div>
+              <div id="weatherZone">
+              </div>
               <!-- <span class="white-text">Today's weather summary.</span> -->
             </div>
-
+          </div>
         </div>
-      </div>
 
     </div>
 
@@ -106,18 +106,22 @@
           <h4 class="header grey-text text-darken-4 center">Forecast</h4>
           <div class="card-panel blue-grey darken-3 z-depth-5 white-text" id="card-div">
             <div class="row">
-            <div id="weatherZoneWeek"></div>
+            <div id="weatherZoneWeek">
+            </div>
             <!-- <span class="white-text">This week's weather summary.</span> -->
+            </div>
           </div>
-          </div>
-        
-      </div>
+        </div>
 
     </div>
+
+
     <div class="fixed-action-btn" id="editButtonDiv">
         <a href="form.html" class="btn btn-small deep-orange darken-4 white-text right">
           <i class="material-icons left">place</i>Edit</a>
-      </div>
+    </div>
+  
+
   <!-- container end -->
   </div>
 
