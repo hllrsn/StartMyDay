@@ -20,6 +20,10 @@ body {
   margin: 10px;
 }
 
+#enterinfo {
+  padding: 5%;
+}
+
 #welcome {
   font-family: 'Merienda', cursive;
 }
@@ -39,7 +43,7 @@ h4 {
       font-family: 'Julius Sans One', sans-serif;*/
   font-family: 'Playfair Display SC', serif;
   font-weight: bold;
-  margin: -4px;
+  margin: 0px;
   padding: 0px;
   
 }
