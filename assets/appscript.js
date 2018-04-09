@@ -13,6 +13,23 @@ $(document).ready(function () {
   let database = firebase.database();
   let PlusButton = 0;
 
+  database.ref().on("value",function (snapshot){
+    let localUserFound = localStorage.getItem("localUser")
+    if (localUserFound === snapshot.val().users[localUserFound].userName){
+      // console.log("user is "+localUserFound)
+      let userData = snapshot.val().users[localUserFound]
+      $("label").addClass("active")
+      $("#userName").val(localUserFound)
+      $("#name").val(userData.fullName)
+      
+      $("#home").val(userData.userAddress)
+      $("#event0").val(userData.event[0])
+      $("#address0").val(userData.event[1])
+      $("#arrivalTime").val(userData.event[2])
+    }
+  })
+  
+
   $("#addButton0").on("click", function (e) {
     e.preventDefault();
     addFromRow(i);
@@ -41,16 +58,23 @@ $(document).ready(function () {
   // Click Listener for adding users
   $("#submit").on("click", function (e) {
     e.preventDefault();
+    let username = ""
+    let name = ""
+    let homeAddress = ""
+    let eventTitle = ""
+    let eventAddress = ""
+    let eventTime = ""
+    let eventArr = []
 
     // Grabs user input
-    let username = $("#userName").val().trim();
-    let name = $("#name").val().trim();
-    let randomFun = $("#giphy").val().trim();
-    let homeAddress = $("#home").val().trim();
-    let eventTitle = $("#event0").val().trim();
-    let eventAddress = $("#address0").val().trim();
-    let eventTime = $("#arrivalTime").val().trim();
-    let eventArr = [eventTitle, eventAddress, eventTime]
+    username = $("#userName").val().trim();
+    name = $("#name").val().trim();
+    // let randomFun = $("#giphy").val().trim();
+    homeAddress = $("#home").val().trim();
+    eventTitle = $("#event0").val().trim();
+    eventAddress = $("#address0").val().trim();
+    eventTime = $("#arrivalTime").val().trim();
+    eventArr = [eventTitle, eventAddress, eventTime]
     console.log(username);
 
     // let username = "jimbob"
@@ -62,10 +86,10 @@ $(document).ready(function () {
     // let eventTime = "7:00"
     // let eventArr = [eventTitle, eventAddress, eventTime]
 
-    function redirect()
-    {
-    var url = "main.html";
-    window.location(url);
+    // function redirect()
+    // {
+    // var url = "main.html";
+    // window.location(url);
 
     database.ref('users/'+username).set({
       userName: username,
@@ -73,6 +97,10 @@ $(document).ready(function () {
       event: eventArr,
       userAddress: homeAddress
     })
+    localStorage.setItem('localUser',username)
+
+
+    window.location.href = "main.html";
 
 
 
@@ -104,9 +132,9 @@ $(document).ready(function () {
     // console.log(newUser.dateAdded);
 
     // Alert
-    M.toast({
-                    html: 'User successfully added'
-                })
+    // M.toast({
+    //                 html: 'User successfully added'
+    //             })
 
   })
   // Create Firebase event for adding users to the database 
@@ -145,6 +173,6 @@ $(document).ready(function () {
     // Convert the array into string and then store in the localStorage
     localStorage.setItem('userName', userName.toString());
   }
-  console.log("saving stuff to local storage")
+  // console.log("saving stuff to local storage")
 
 })
