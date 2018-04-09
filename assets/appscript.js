@@ -10,7 +10,7 @@ $(document).ready(function () {
   };
   firebase.initializeApp(config);
 
-  let db = firebase.database();
+  let database = firebase.database();
   let PlusButton = 0;
 
   $("#addButton0").on("click", function (e) {
@@ -46,61 +46,80 @@ $(document).ready(function () {
     let username = $("#userName").val().trim();
     let name = $("#name").val().trim();
     let randomFun = $("#giphy").val().trim();
-    let event = $("#event0").val().trim();
-    let address = $("#address0").val().trim();
-    let arrivalTime = $("#arrivalTime").val().trim();
+    let homeAddress = $("#home").val().trim();
+    let eventTitle = $("#event0").val().trim();
+    let eventAddress = $("#address0").val().trim();
+    let eventTime = $("#arrivalTime").val().trim();
+    let eventArr = [eventTitle, eventAddress, eventTime]
     console.log(username);
 
-    // Creates local "temporary" object for holding user data
-    let newUser = {
-      userName: userName,
-      name: name,
-      event0: event0,
-      address0: address0,
-      arrivalTime: arrivalTime,
-      dateAdded: firebase.database.ServerValue.TIMESTAMP
-    };
+    // let username = "jimbob"
+    // let name = "jim"
+    // let randomFun = "cats"
+    // let homeAddress = "1845 Aglen St"
+    // let eventTitle = "work"
+    // let eventAddress = "550 s 4th st"
+    // let eventTime = "7:00"
+    // let eventArr = [eventTitle, eventAddress, eventTime]
 
-    console.log(newUser)
+    database.ref('users/'+username).set({
+      userName: username,
+      event: eventArr,
+      userAddress: homeAddress
+    })
+
+
+
+    // Creates local "temporary" object for holding user data
+    // let newUser = {
+    //   userName: userName,
+    //   name: name,
+    //   event0: event0,
+    //   address0: address0,
+    //   arrivalTime: arrivalTime,
+    //   dateAdded: firebase.database.ServerValue.TIMESTAMP
+    // };
+
+    // console.log(newUser)
 
     // // Uploads user data to the database
     // database.ref().push(newUser);
 
 
     // Push to Firebase
-    db.ref('users').push(newUser);
+    // db.ref('users').push(newUser);
 
     // Logs everything to console
-    console.log(newUser.userName);
-    console.log(newUser.name);
-    console.log(newUser.event0);
-    console.log(newUser.address0);
-    console.log(arrivalTime);
-    console.log(newUser.dateAdded);
+    // console.log(newUser.userName);
+    // console.log(newUser.name);
+    // console.log(newUser.event0);
+    // console.log(newUser.address0);
+    // console.log(arrivalTime);
+    // console.log(newUser.dateAdded);
 
     // Alert
     alert("User Successfully Added");
 
   })
   // Create Firebase event for adding users to the database 
-  db.ref().on("child_added", function (childSnapshot, prevChildKey) {
+  // db.ref().on("child_added", function (childSnapshot, prevChildKey) {
 
-    console.log(childSnapshot.val());
+  //   console.log(childSnapshot.val());
 
-    // Store everything into a variable.
-    let userName = childSnapshot.val().userName;
-    let name = childSnapshot.val().name;
-    let event = childSnapshot.val().event0;
-    let address = childSnapshot.val().address0;
-    let dateAdded = childSnapshot.val().dateAdded;
+  //   // Store everything into a variable.
+  //   let userName = childSnapshot.val().userName;
+  //   let name = childSnapshot.val().name;
+  //   let event = childSnapshot.val().event0;
+  //   let address = childSnapshot.val().address0;
+  //   let dateAdded = childSnapshot.val().dateAdded;
 
-    // User Info
-    console.log(userName);
-    console.log(name);
-    console.log(event);
-    console.log(address);
-    console.log(dateAdded);
-  });
+  //   // User Info
+  //   console.log(userName);
+  //   console.log(name);
+  //   console.log(event);
+  //   console.log(address);
+  //   console.log(dateAdded);
+  // });
 
   function save(user) {
     var isAlreadyInserted = false;
