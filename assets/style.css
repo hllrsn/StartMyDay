@@ -14,15 +14,18 @@
 
 body {
   background: url("images/city-40.png") ghostwhite;
-  background-repeat: no-repeat;
   background-attachment: fixed;
 
   background-size: 100%;
-  margin: 20px;
+  margin: 10px;
+}
+
+#welcome {
+  font-family: 'Merienda', cursive;
 }
 
 
-h3 {
+h4 {
   /*font-family: 'Chicle', cursive;
       font-family: 'Poppins', sans-serif;
       font-family: 'Yatra One', cursive;
@@ -36,13 +39,15 @@ h3 {
       font-family: 'Julius Sans One', sans-serif;*/
   font-family: 'Playfair Display SC', serif;
   font-weight: bold;
-  /*text-shadow: 1px 1px 1px*/
+  margin: -4px;
+  padding: 0px;
+  
 }
 
-
+/* 
 #map {
-  height: 600px;
-}
+  height: 50%;
+} */
 
 
 #signin {
@@ -80,5 +85,18 @@ input[type=text] {
   padding: 5px;
   margin-left: 20px;
   margin-right: 20px;
+  
 }
 
+#card-div {
+  padding-left: 10%;
+}
+
+#editButtonDiv {
+  padding: 0px;
+}
+
+.card-panel {
+  margin: 2px;
+  padding: 15px;
+}
