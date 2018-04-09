@@ -267,7 +267,7 @@ $(document).ready(function () {
     
     function weatherCall(location){
         $.ajax({
-            url: "http://api.wunderground.com/api/31f7570bfbcd751b/hourly10day/q/MN/"+location+".json",
+            url: "https://api.wunderground.com/api/31f7570bfbcd751b/hourly10day/q/MN/"+location+".json",
             method: "GET"
         }).then(function (response) {
             console.log(response)
