@@ -1,5 +1,24 @@
+<<<<<<< Updated upstream
 $(document).ready(function(){
 
+=======
+$(document).ready(function () {
+
+    const config = {
+        apiKey: "AIzaSyDKxbhfLyIhZDvq7CpT7Ate8pLAyrSjFM8",
+        authDomain: "startmyday-58618.firebaseapp.com",
+        databaseURL: "https://startmyday-58618.firebaseio.com",
+        projectId: "startmyday-58618",
+        storageBucket: "startmyday-58618.appspot.com",
+        messagingSenderId: "1033136648561"
+    };
+    firebase.initializeApp(config);
+
+    const database = firebase.database();
+    const user = localStorage.getItem("user")
+
+   
+>>>>>>> Stashed changes
 
     let hasConfiguration = 1;
     let userName = "Peter Anderson";
@@ -10,6 +29,11 @@ $(document).ready(function(){
     let homeBase = "1845 Aglen St Roseville";
     let queryURL = "https://maps.googleapis.com/maps/api/directions/json?";
     // var directionsService = new google.maps.DirectionsService();
+    function welcome() {
+            $("#welcome").text("Welcome " + userName + ",")
+        }
+    console.log(userName);
+    welcome();
 
     let homeBasePlus = homeBase.split(" ").join("+")
     let destinationPlus = destinationAddress.split(" ").join("+");
@@ -186,6 +210,73 @@ $(document).ready(function(){
     //     }).then(function(response) {
     //         console.log(this)
     //     })
+<<<<<<< Updated upstream
+=======
+    // }
+
+
+
+    $.ajax({
+        url: "http://api.wunderground.com/api/31f7570bfbcd751b/hourly10day/q/MN/minneapolis.json",
+        method: "GET"
+    }).then(function (response) {
+        console.log(response)
+
+        let weatherNow = response.hourly_forecast[0].feelslike.english
+        let weatherNowTime = response.hourly_forecast[0].FCTTIME.hour
+        weatherNowTime = Math.abs((weatherNowTime - 12) * -1)
+        console.log(weatherNowTime)
+
+        let counter = 0;
+        for (let i=0;i<7;i++){
+            let weatherDiv = "<div class='col s1' id='weatherDiv'>";
+            let weatherTime = Math.abs((response.hourly_forecast[counter].FCTTIME.hour - 12) * -1)
+            weatherTime += ":00"
+            if (counter === 0){
+                weatherTime = "Now"
+            }
+            weatherDiv += weatherTime + "<br>"
+            weatherDiv += "<img src='./assets/images/"+response.hourly_forecast[counter].icon+".png' class='responsive-img'><br>";
+            weatherDiv += response.hourly_forecast[counter].feelslike.english+"° F</div>"
+            console.log(weatherDiv)
+            counter = counter + 1
+            if(counter === 0){
+                $("#weatherZone").html("")
+            }
+            $("#weatherZone").append(weatherDiv)
+
+
+        }
+        let days = [null, "Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
+        let counter2 = 37-response.hourly_forecast[0].FCTTIME.hour;
+
+        for (let i=0;i<7;i++){
+            let weatherDiv = "<div class='col s1' id='weatherDiv'>";
+            // let weatherTime = Math.abs((response.hourly_forecast[counter2].FCTTIME.hour - 12) * -1)
+            var date = moment().add(i,'days').format('dddd');
+            // date = date.add(i,'days')
+            console.log(date)
+            // var dow = date.day();
+            weatherDOW = date
+            if (counter === 0){
+                weatherDOW = "Today"
+            }
+            weatherDiv += weatherDOW + "<br>"
+            weatherDiv += "<img src='./assets/images/"+response.hourly_forecast[counter2].icon+".png' class='responsive-img'><br>";
+            weatherDiv += response.hourly_forecast[counter2].feelslike.english+"° F</div>"
+            console.log(weatherDiv)
+            counter2 = counter2 + 24
+            if(counter2 === 0){
+                $("#weatherZoneWeek").html("")
+            }
+            $("#weatherZoneWeek").append(weatherDiv)
+
+
+        }
+        
+    })
+
+>>>>>>> Stashed changes
 
 
     // <div style="width: 100%"><iframe width="100%" height="500" src="https://maps.google.com/maps?width=100%&amp;height=500&amp;hl=en&amp;q=1845%20Aglen%20St&amp;ie=UTF8&amp;t=p&amp;z=13&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"><a href="https://www.maps.ie/create-google-map/">Embed Google Map</a></iframe></div><br />

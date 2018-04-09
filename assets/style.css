@@ -1,10 +1,81 @@
 body {
+<<<<<<< Updated upstream
     background: url("images/city-40.png") ghostwhite;
     background-size: 100%;
     margin: 20px;
   }
+=======
+  background: url("images/city-40.png") ghostwhite;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100%;
+  margin: 20px;
+}
+
+h3 {
+  /*font-family: 'Chicle', cursive;
+      font-family: 'Poppins', sans-serif;
+      font-family: 'Yatra One', cursive;
+      font-family: 'Josefin Sans', sans-serif;
+      font-family: 'Work Sans', sans-serif;
+      font-family: 'Montserrat', sans-serif;
+      font-family: 'Amaranth', sans-serif;
+      font-family: 'Unica One', cursive;
+      font-family: 'Merienda', cursive;
+      font-family: 'Alegreya Sans SC', sans-serif;
+      font-family: 'Julius Sans One', sans-serif;*/
+  font-family: 'Playfair Display SC', serif;
+  font-weight: bold;
+  /*text-shadow: 1px 1px 1px*/
+}
+
+
+#map {
+  height: 600px;
+}
+
+
+#signin {
+  height: 150px;
+}
+
+
+#signin-buttons {
+  padding-top: 25px;
+  /*padding-left: 200px;
+  text-align: center;*/
+}
+
+
+#add-remove-buttons {
+  padding-top: 25px;
+  /*padding-left: 850px;
+  text-align: center;*/
+
+}
+
+
+#depart, #arrive, #map, #weatherZone, #weatherZoneWeek, #enterinfo, #signin, #card-div {
+  border-radius: 5px;
+}
+
+>>>>>>> Stashed changes
 
  input[type=text] {
      color: white;
  }
 
+<<<<<<< Updated upstream
+=======
+#weatherDiv {
+  text-align: center;
+  /* width: 128px; */
+  padding: 5px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+#card-div {
+  text-align: center;
+}
+>>>>>>> Stashed changes
