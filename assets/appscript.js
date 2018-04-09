@@ -69,8 +69,15 @@ $(document).ready(function () {
       userAddress: homeAddress
     })
 
+    $("#submit").on("click",  function redirect() { 
+      e.preventDefault();
 
-
+      var url = "main.html";
+      window.location(url);
+    
+    });
+  
+  
     // Creates local "temporary" object for holding user data
     // let newUser = {
     //   userName: userName,
