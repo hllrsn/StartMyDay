@@ -13,8 +13,7 @@ $(document).ready(function () {
     const database = firebase.database();
     const user = localStorage.getItem("user")
 
-
-
+   
 
     let hasConfiguration = 1;
     let userName = "Peter Anderson";
@@ -26,6 +25,13 @@ $(document).ready(function () {
     let queryURL = "https://maps.googleapis.com/maps/api/directions/json?";
     let embedKey = "AIzaSyDSCagDC4_ojyUv1k-8GuSelE_67iLSj3w"
     // var directionsService = new google.maps.DirectionsService();
+
+    function welcome() {
+            $("#welcome").text("Welcome " + userName + ",")
+        }
+    console.log(userName);
+    welcome();
+
 
     database.ref().on("value", function (snapshot) {
         console.log(snapshot.val().users)
@@ -240,7 +246,9 @@ $(document).ready(function () {
                 weatherTime = "Now"
             }
             weatherDiv += weatherTime + "<br>"
-            weatherDiv += "<img src='./assets/images/"+response.hourly_forecast[counter].icon+".png'><br>";
+
+            weatherDiv += "<img src='./assets/images/"+response.hourly_forecast[counter].icon+".png' class='responsive-img'><br>";
+
             weatherDiv += response.hourly_forecast[counter].feelslike.english+"° F</div>"
             console.log(weatherDiv)
             counter = counter + 1
@@ -266,7 +274,9 @@ $(document).ready(function () {
                 weatherDOW = "Today"
             }
             weatherDiv += weatherDOW + "<br>"
-            weatherDiv += "<img src='./assets/images/"+response.hourly_forecast[counter2].icon+".png'><br>";
+
+            weatherDiv += "<img src='./assets/images/"+response.hourly_forecast[counter2].icon+".png' class='responsive-img'><br>";
+
             weatherDiv += response.hourly_forecast[counter2].feelslike.english+"° F</div>"
             console.log(weatherDiv)
             counter2 = counter2 + 24
