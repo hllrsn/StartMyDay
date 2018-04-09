@@ -62,6 +62,11 @@ $(document).ready(function () {
     // let eventTime = "7:00"
     // let eventArr = [eventTitle, eventAddress, eventTime]
 
+    function redirect()
+    {
+    var url = "main.html";
+    window.location(url);
+
     database.ref('users/'+username).set({
       userName: username,
       fullName: name,
@@ -69,15 +74,8 @@ $(document).ready(function () {
       userAddress: homeAddress
     })
 
-    $("#submit").on("click",  function redirect() { 
-      e.preventDefault();
 
-      var url = "main.html";
-      window.location(url);
-    
-    });
-  
-  
+
     // Creates local "temporary" object for holding user data
     // let newUser = {
     //   userName: userName,
