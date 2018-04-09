@@ -32,7 +32,7 @@ $(document).ready(function () {
 
   $("#addButton0").on("click", function (e) {
     e.preventDefault();
-    addFromRow(i);
+    addFromRow(PlusButton);
   });
 
   function addFromRow(iter) {
@@ -50,7 +50,7 @@ $(document).ready(function () {
     //click listener for the new button
     let addButtonID = "#" + addButtonID;
     $(addButtonID).on("click", function () {
-      addFormRow(i);
+      addFormRow(PlusButton);
     })
 
   }
