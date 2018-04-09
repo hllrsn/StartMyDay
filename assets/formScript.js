@@ -26,6 +26,7 @@ $(document).ready(function () {
     let homeBase = "1845 Aglen St Roseville";
     let queryURL = "https://maps.googleapis.com/maps/api/directions/json?";
     let embedKey = "AIzaSyDSCagDC4_ojyUv1k-8GuSelE_67iLSj3w"
+    const geoKey = "AIzaSyCB5tndG-nx3Z8RR-fnmeyXrEgkTRhYqSs"
     // var directionsService = new google.maps.DirectionsService();
 
     function welcome(name) {
@@ -48,9 +49,11 @@ $(document).ready(function () {
         userName = userIsFound[localUser].userName;
         destinationTitle = userIsFound[localUser].event[0];
         destinationAddress = userIsFound[localUser].event[1];
+        $("#arrivalLocation").text(destinationAddress)
         let destinationPlus = destinationAddress.split(" ").join("+");
         homeBase = userIsFound[localUser].userAddress;
         let homeBasePlus = homeBase.split(" ").join("+")
+        addressTransform(homeBasePlus)
 
         mapInjector(embedKey, homeBasePlus, destinationPlus)
     })
@@ -234,82 +237,111 @@ $(document).ready(function () {
     //         console.log(this)
     //     })
     // }
+    function addressTransform(address){
+        $.ajax({
+            url: "https://maps.googleapis.com/maps/api/geocode/json?address="+address+"&key="+geoKey,
+            method: "GET"
+    
+        }).then(function(response){
+            console.log(response)
+            console.log(response.results[0].address_components[3].types[0])
 
+            let condMarker = 0;
+            let i = 0;
 
-
-    $.ajax({
-        url: "http://api.wunderground.com/api/31f7570bfbcd751b/hourly10day/q/MN/minneapolis.json",
-        method: "GET"
-    }).then(function (response) {
-        // console.log(response)
-
-        let weatherNow = response.hourly_forecast[0].feelslike.english
-        let weatherNowTime = response.hourly_forecast[0].FCTTIME.hour
-        weatherNowTime = Math.abs((weatherNowTime - 12) * -1)
-        // console.log(weatherNowTime)
-
-        let counter = 0;
-        for (let i=0;i<7;i++){
-            let weatherDiv = "<div class='col s1' id='weatherDiv'>";
-            let weatherTime = response.hourly_forecast[counter].FCTTIME.hour
-            if (weatherTime === "0") {
-                weatherTime = "12:00 AM"
+            while (condMarker === 0){
+                console.log(i)
+                let checkItem = response.results[0].address_components[i].types[0];
+                console.log(checkItem)
+                if (checkItem === "postal_code") {
+                    console.log(response.results[0].address_components[i].long_name)
+                    weatherCall(response.results[0].address_components[i].long_name);
+                    condMarker = 1;
+                }
+                i++
             }
-            else if (weatherTime - 12 < 0){
-                weatherTime += ":00 AM"
-            } else {
-                weatherTime -= 12
-                weatherTime += ":00 PM"
+
+
+        })
+    }
+    
+    function weatherCall(location){
+        $.ajax({
+            url: "http://api.wunderground.com/api/31f7570bfbcd751b/hourly10day/q/MN/"+location+".json",
+            method: "GET"
+        }).then(function (response) {
+            // console.log(response)
+    
+            let weatherNow = response.hourly_forecast[0].feelslike.english
+            let weatherNowTime = response.hourly_forecast[0].FCTTIME.hour
+            weatherNowTime = Math.abs((weatherNowTime - 12) * -1)
+            // console.log(weatherNowTime)
+    
+            let counter = 0;
+            for (let i=0;i<7;i++){
+                let weatherDiv = "<div class='col s1' id='weatherDiv'>";
+                let weatherTime = response.hourly_forecast[counter].FCTTIME.hour
+                if (weatherTime === "0") {
+                    weatherTime = "12:00 AM"
+                }
+                else if (weatherTime - 12 < 0){
+                    weatherTime += ":00 AM"
+                } else {
+                    weatherTime -= 12
+                    weatherTime += ":00 PM"
+                }
+                // let weatherTime = Math.abs((response.hourly_forecast[counter].FCTTIME.hour - 12) * -1)
+                // weatherTime += ":00"
+                if (counter === 0){
+                    weatherTime = "Now"
+                }
+                weatherDiv += weatherTime + "<br>"
+    
+                weatherDiv += "<img src='./assets/images/"+response.hourly_forecast[counter].icon+".png' class='responsive-img'><br>";
+    
+                weatherDiv += response.hourly_forecast[counter].feelslike.english+"° F</div>"
+                // console.log(weatherDiv)
+                counter = counter + 1
+                if(counter === 0){
+                    $("#weatherZone").html("")
+                }
+                $("#weatherZone").append(weatherDiv)
+    
+    
             }
-            // let weatherTime = Math.abs((response.hourly_forecast[counter].FCTTIME.hour - 12) * -1)
-            // weatherTime += ":00"
-            if (counter === 0){
-                weatherTime = "Now"
+            let days = [null, "Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
+            let counter2 = 37-response.hourly_forecast[0].FCTTIME.hour;
+    
+            for (let i=0;i<7;i++){
+                let weatherDiv = "<div class='col s1' id='weatherDiv'>";
+                // let weatherTime = Math.abs((response.hourly_forecast[counter2].FCTTIME.hour - 12) * -1)
+                var date = moment().add(i,'days').format('dddd');
+                // date = date.add(i,'days')
+                // console.log(date)
+                // var dow = date.day();
+                weatherDOW = date
+                if (counter === 0){
+                    weatherDOW = "Today"
+                }
+                weatherDiv += weatherDOW + "<br>"
+    
+                weatherDiv += "<img src='./assets/images/"+response.hourly_forecast[counter2].icon+".png' class='responsive-img'><br>";
+                // console.log(weatherDiv)
+    
+                weatherDiv += response.hourly_forecast[counter2].feelslike.english+"° F</div>"
+                // console.log(weatherDiv)
+                counter2 = counter2 + 24
+                if(counter2 === 0){
+                    $("#weatherZoneWeek").html("")
+                }
+                $("#weatherZoneWeek").append(weatherDiv)
+    
+    
             }
-            weatherDiv += weatherTime + "<br>"
-
-            weatherDiv += "<img src='./assets/images/"+response.hourly_forecast[counter].icon+".png' class='responsive-img'><br>";
-
-            weatherDiv += response.hourly_forecast[counter].feelslike.english+"° F</div>"
-            // console.log(weatherDiv)
-            counter = counter + 1
-            if(counter === 0){
-                $("#weatherZone").html("")
-            }
-            $("#weatherZone").append(weatherDiv)
-
-
-        }
-        let days = [null, "Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
-        let counter2 = 37-response.hourly_forecast[0].FCTTIME.hour;
-
-        for (let i=0;i<7;i++){
-            let weatherDiv = "<div class='col s1' id='weatherDiv'>";
-            // let weatherTime = Math.abs((response.hourly_forecast[counter2].FCTTIME.hour - 12) * -1)
-            var date = moment().add(i,'days').format('dddd');
-            // date = date.add(i,'days')
-            // console.log(date)
-            // var dow = date.day();
-            weatherDOW = date
-            if (counter === 0){
-                weatherDOW = "Today"
-            }
-            weatherDiv += weatherDOW + "<br>"
-
-            weatherDiv += "<img src='./assets/images/"+response.hourly_forecast[counter2].icon+".png' class='responsive-img'><br>";
-
-            weatherDiv += response.hourly_forecast[counter2].feelslike.english+"° F</div>"
-            // console.log(weatherDiv)
-            counter2 = counter2 + 24
-            if(counter2 === 0){
-                $("#weatherZoneWeek").html("")
-            }
-            $("#weatherZoneWeek").append(weatherDiv)
-
-
-        }
-        
-    })
+            
+        })
+    }
+    
 
 
 
