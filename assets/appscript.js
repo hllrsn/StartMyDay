@@ -30,30 +30,30 @@ $(document).ready(function () {
   })
   
 
-  $("#addButton0").on("click", function (e) {
-    e.preventDefault();
-    addFromRow(i);
-  });
+  // $("#addButton0").on("click", function (e) {
+  //   e.preventDefault();
+  //   addFormRow(PlusButton);
+  // });
 
-  function addFromRow(iter) {
-    iter++;
-    let rowID = "eventRow" + iter;
-    let eventID = "event" + iter;
-    let addressID = "address" + iter;
-    let arrivalID = "arrivalTime" + iter;
-    let addButtonID = "addButton" + iter;
+  // function addFormRow(iter) {
+  //   iter++;
+  //   let rowID = "eventRow" + iter;
+  //   let eventID = "event" + iter;
+  //   let addressID = "address" + iter;
+  //   let arrivalID = "arrivalTime" + iter;
+  //   let addButtonID = "addButton" + iter;
 
-    let newRow = '<div class="input-field col s4"id= ""' + rowID + '> <input placeholder="Event" id=""' + eventID + ' type="text" class="validate"> <label for="event">Where are you going today?</label> </div> <div class="input-field col s4"> <input id=""' + addressID + ' type="text" class="validate"> <label for="address">Address</label> </div> <div class="col s2"> <input id=""' + arrivalID + ' class="timepicker"><i class="material-icons">access_time</i> <label for="arrivalTime">Arrival Time</label> </div> <a class="btn-floating btn-medium waves-effect waves-light blue" id="addButton0"><i class="material-icons">add</i></a> <a class="btn-floating btn-medium waves-effect waves-light blue" id="removeButton0"><i class="material-icons">remove</i></a>'
+  //   let newRow = '<div class="input-field col s4"id= ""' + rowID + '> <input placeholder="Event" id=""' + eventID + ' type="text" class="validate"> <label for="event">Where are you going today?</label> </div> <div class="input-field col s4"> <input id=""' + addressID + ' type="text" class="validate"> <label for="address">Address</label> </div> <div class="col s2"> <input id=""' + arrivalID + ' class="timepicker"><i class="material-icons">access_time</i> <label for="arrivalTime">Arrival Time</label> </div> <a class="btn-floating btn-medium waves-effect waves-light blue" id="addButton0"><i class="material-icons">add</i></a> <a class="btn-floating btn-medium waves-effect waves-light blue" id="removeButton0"><i class="material-icons">remove</i></a>'
+  //   console.log(newRow)
+  //   $("#events").append(newRow);
 
-    $("#events").append(newRow);
+  //   //click listener for the new button
+  //   let addButtonID = "#" + addButtonID;
+  //   $(addButtonID).on("click", function () {
+  //     addFormRow(i);
+  //   })
 
-    //click listener for the new button
-    let addButtonID = "#" + addButtonID;
-    $(addButtonID).on("click", function () {
-      addFormRow(i);
-    })
-
-  }
+  // }
 
   // Click Listener for adding users
   $("#submit").on("click", function (e) {
