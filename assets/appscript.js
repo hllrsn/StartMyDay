@@ -64,6 +64,7 @@ $(document).ready(function () {
 
     database.ref('users/'+username).set({
       userName: username,
+      fullName: name,
       event: eventArr,
       userAddress: homeAddress
     })

@@ -11,12 +11,12 @@ $(document).ready(function () {
     firebase.initializeApp(config);
 
     const database = firebase.database();
-    const user = localStorage.getItem("user")
+    const localUser = localStorage.getItem("localUser")
 
    
 
     let hasConfiguration = 1;
-    let userName = "Peter Anderson";
+    let userName = "user";
     let events = ["work", "550 S 4th St Minneapolis", "07:55"];
     let destinationTitle = events[0];
     let destinationAddress = events[1];
@@ -27,10 +27,10 @@ $(document).ready(function () {
     // var directionsService = new google.maps.DirectionsService();
 
     function welcome() {
-            $("#welcome").text("Welcome " + userName + ",")
+            $("#welcome").text("Welcome " + fullName + ",")
         }
     console.log(userName);
-    welcome();
+    
 
 
     database.ref().on("value", function (snapshot) {
@@ -40,8 +40,12 @@ $(document).ready(function () {
         let userToCheck = user
         userIsFound = snapshot.val().users;
         console.log(userIsFound[userToCheck].userName)
+        welcome();
         // if (userIsFound === "mustafa") {
         //     console.log("yay!")
+
+        userName = userIsFound[localUser].userName;
+        destinationTitle = userIsFound[localUser].event[0];
     })
     let homeBasePlus = homeBase.split(" ").join("+")
     let destinationPlus = destinationAddress.split(" ").join("+");
@@ -240,8 +244,18 @@ $(document).ready(function () {
         let counter = 0;
         for (let i=0;i<7;i++){
             let weatherDiv = "<div class='col s1' id='weatherDiv'>";
-            let weatherTime = Math.abs((response.hourly_forecast[counter].FCTTIME.hour - 12) * -1)
-            weatherTime += ":00"
+            let weatherTime = response.hourly_forecast[counter].FCTTIME.hour
+            if (weatherTime === "0") {
+                weatherTime = "12:00 AM"
+            }
+            else if (weatherTime - 12 < 0){
+                weatherTime += ":00 AM"
+            } else {
+                weatherTime -= 12
+                weatherTime += ":00 PM"
+            }
+            // let weatherTime = Math.abs((response.hourly_forecast[counter].FCTTIME.hour - 12) * -1)
+            // weatherTime += ":00"
             if (counter === 0){
                 weatherTime = "Now"
             }
