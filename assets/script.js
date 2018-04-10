@@ -28,7 +28,7 @@ $("#submit").on("click", function (event) {
             } else {
                 console.log("not a user");
                 M.toast({
-                    html: 'Invalid User, try again'
+                    html: 'User Not Found. Please create an account.'
                 });
             }
 

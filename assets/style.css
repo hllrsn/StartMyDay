@@ -21,17 +21,6 @@ body {
 }
 
 
-#enterinfo {
-  padding: 5%;
-}
-
-
-#welcome {
-  font-family: 'Merienda', cursive;
-  /*padding-bottom: 25px;*/
-}
-
-
 h2 {
   /*font-family: 'Merienda', cursive;*/
   font-family: 'Playfair Display SC', serif;
@@ -58,6 +47,17 @@ h4 {
 }
 
 
+#enterinfo {
+  padding: 5%;
+}
+
+
+#welcome {
+  font-family: 'Merienda', cursive;
+  /*padding-bottom: 25px;*/
+}
+
+
 #map {
   height: 500px;
 }
@@ -79,8 +79,25 @@ h4 {
   padding-top: 25px;
   /*padding-left: 850px;
   text-align: center;*/
-
 }
+
+
+.loginButton {
+  margin-right: 10px;
+  margin-left: 8px;
+}
+
+
+#addButton {
+  margin-right: 10px;
+  margin-left: 5px;
+}
+
+
+#editButton {
+  margin-right: 29px;
+}
+
 
 #depart, #arrive, #map, #weatherZone, #weatherZoneWeek, #enterinfo, #signin, #card-div {
   border-radius: 5px;
@@ -95,8 +112,8 @@ h4 {
 #weatherDiv {
   text-align: center;
   /* width: 128px; */
-  /*padding: 5px;*/
-  padding: 1px;
+  /*padding: 1px;*/
+  padding: 5px;
   margin-left: 20px;
   margin-right: 20px;
 }
@@ -107,17 +124,29 @@ h4 {
 }
 
 
-/*#editButtonDiv {
-  padding: 0px;
-}*/
-
-
 .card-panel {
   margin: 2px;
   padding: 15px;
 }
 
 
+.card-title {
+  font-size: 30px !important;
+  /*font-size: xx-large !important;*/
+  /*font-weight: bold !important;*/
+}
+
+
 input[type=text] {
   color: white;
+}
+
+
+#toast-container {
+  /*margin-top: 150%;*/
+  top: auto !important;
+  right: auto !important;
+  left: 22px;
+  /*bottom: 0%;
+  left: 40%;*/
 }
